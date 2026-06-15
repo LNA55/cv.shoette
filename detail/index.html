@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elena Hercot-Hagège — Product Leadership</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --bordeaux:       #6e1824;
+      --bordeaux-mid:   #9a5060;
+      --bordeaux-light: #b07080;
+      --bordeaux-pale:  #c9909a;
+      --bordeaux-faint: #d0a8b0;
+    }
+    body { font-family: Georgia, serif; margin: 0; background: #f8f7f3; color: #222; }
+    nav { position: fixed; top: 1.2rem; right: 1.5rem; display: flex; gap: 0.6rem; font-size: 0.8rem; letter-spacing: 0.05em; direction: ltr; z-index: 20; }
+    nav button { background: none; border: none; cursor: pointer; color: #aaa; padding: 0; font-family: Georgia, serif; font-size: 0.8rem; }
+    nav button.active { color: #222; font-weight: bold; }
+    nav button:hover { color: #555; }
+    nav span { color: #ddd; }
+
+    main { max-width: 1200px; margin: 4.5rem auto 5.5rem; padding: 0 2rem 0 2rem; }
+
+    /* Header */
+    .cv-header { text-align: center; margin-bottom: 2.5rem; padding-bottom: 1.8rem; }
+    .cv-header h1 { font-size: 1.6rem; font-weight: normal; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 0.6rem; }
+    .cv-header .tagline { font-size: 0.82rem; letter-spacing: 0.15em; text-transform: uppercase; color: #222; margin: 0 0 0.9rem; }
+    .cv-header .positioning { font-size: 0.78rem; color: var(--bordeaux); letter-spacing: 0.05em; margin: 0; font-style: italic; }
+
+    section { margin-bottom: 2.2rem; margin-top: 3.5rem; padding: 0 1rem; }
+    section h2 {
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #555; margin: 0 0 1.4rem -3.5rem; padding: 0;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    section h2::before {
+      content: ''; display: inline-block;
+      width: 30px; height: 1.5px;
+      background: var(--bordeaux); flex-shrink: 0;
+    }
+
+    /* Competency tags */
+    .highlights-intro { font-size: 0.82rem; color: #aaa; font-style: italic; margin-bottom: 1.4rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0; padding-left: 1rem; }
+    .tag {
+      display: inline-block; padding: 0.3rem 0.85rem;
+      border: 1px solid var(--bordeaux-pale); font-size: 0.8rem; color: var(--bordeaux-light);
+      letter-spacing: 0.04em; cursor: pointer;
+      transition: all 0.18s ease; border-radius: 2px;
+      user-select: none;
+    }
+    .tag:hover { color: var(--bordeaux); border-color: var(--bordeaux); }
+
+    /* Active tag bar */
+    #tag-bar {
+      display: none;
+      margin: 1.2rem 0 0.2rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 2px;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+    }
+    #tag-bar strong { font-weight: bold; }
+    #tag-bar .tag-bar-desc { opacity: 0.85; font-style: italic; margin-left: 0.4rem; }
+    #tag-bar .tag-bar-clear { float: right; cursor: pointer; opacity: 0.6; font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    #tag-bar .tag-bar-clear:hover { opacity: 1; }
+
+    /* Jobs */
+    .job { margin-bottom: 1.8rem; }
+    .job + .job { padding-top: 1.5rem; border-top: 1px solid #e8e8e5; }
+    .job-header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.15rem 0.7rem; margin-bottom: 0.3rem; }
+    .job-company { width: 100%; order: 1; font-size: 1.02rem; font-weight: normal; text-transform: uppercase; letter-spacing: 0.1em; color: #222; }
+    .job-dates { order: 2; font-size: 0.8rem; color: #bbb; white-space: nowrap; }
+    .job-type { order: 2; font-size: 0.8rem; color: #999; }
+    .job-context { font-size: 0.8rem; color: #aaa; font-style: italic; margin: 0 0 0.4rem; }
+    .job-items { list-style: none; padding: 0; margin: 0; }
+    .job-items li {
+      margin-bottom: 0.3rem;
+      transition: opacity 0.2s, background-color 0.2s;
+      padding: 0.1rem 0 0.1rem 0;
+      border-left: 3px solid transparent;
+      padding-left: 0;
+      border-radius: 2px;
+    }
+    .li-toggle { display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer; user-select: none; }
+    .li-toggle:hover .li-text { text-decoration: underline; }
+    .bullet { color: #999; font-size: 0.9rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .li-text { font-weight: normal; font-size: 0.85rem; line-height: 1.55; color: #222; }
+    .li-detail { display: none; margin: 0.5rem 0 0.6rem 1.1rem; padding-left: 0.8rem; border-left: 2px solid #e8e8e5; }
+    .li-detail ul { list-style: none; padding: 0; margin: 0; }
+    .li-detail ul li { font-size: 0.8rem; line-height: 1.7; color: #666; padding: 0; margin: 0; }
+    .li-detail ul li strong { color: #444; }
+
+    /* Proof callout */
+    .proof-callout {
+      font-size: 0.78rem;
+      line-height: 1.55;
+      padding: 0.3rem 0.6rem 0.3rem 0.7rem;
+      margin: 0.2rem 0 0.35rem 1.55rem;
+      border-radius: 2px;
+    }
+
+    /* Education */
+    .edu { margin-bottom: 1.3rem; }
+    .edu-header { display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.18rem; }
+    .edu-year { font-size: 0.78rem; color: #aaa; white-space: nowrap; }
+    .edu-school { font-size: 0.9rem; font-weight: normal; text-transform: uppercase; letter-spacing: 0.07em; color: #2a2a2a; }
+    .edu-diploma { font-size: 0.85rem; color: #555; margin: 0 0 0.1rem; padding-left: 0; }
+    .edu-achievement { font-size: 0.78rem; color: #999; font-style: italic; }
+    .languages { font-size: 0.85rem; color: #555; line-height: 1.8; }
+    a.back { display: inline-block; margin-top: 2.5rem; font-size: 0.8rem; color: #aaa; text-decoration: none; border-bottom: 1px solid #ddd; }
+    a.back:hover { color: #222; border-color: #222; }
+
+    /* Footer */
+    footer { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; border-top: 1px solid #e8e8e5; padding: 1.1rem 1.5rem 1.2rem; z-index: 10; direction: ltr; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .footer-seeking { font-size: 0.95rem; color: #222; letter-spacing: 0.01em; }
+    .footer-seeking .date { color: #222; margin-right: 0.3rem; }
+    .footer-contact { display: flex; gap: 1.2rem; font-size: 0.8rem; color: #222; }
+    .footer-contact a { color: #222; text-decoration: none; border-bottom: 1px solid #e0e0e0; }
+    .footer-contact a:hover { color: #000; border-color: #888; }
+
+    /* Filter view */
+    .filter-title { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: #ccc; margin: 0 0 0.75rem; }
+    .filter-grid { display: flex; flex-wrap: wrap; gap: 0.55rem 2rem; padding-left: 1rem; }
+    .filter-grid label { display: flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; color: var(--bordeaux-mid); cursor: pointer; user-select: none; }
+    .filter-grid label:hover { color: var(--bordeaux); }
+    .filter-grid input[type="checkbox"] {
+      appearance: none; -webkit-appearance: none;
+      width: 13px; height: 13px; flex-shrink: 0;
+      border: 1.5px solid var(--bordeaux-pale); border-radius: 2px;
+      background-color: white;
+      background-image: none;
+      cursor: pointer; transition: all 0.15s; margin-top: 1px;
+    }
+    .filter-grid input[type="checkbox"]:checked {
+      background-color: var(--bordeaux);
+      border-color: var(--bordeaux);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l2.5 2.5L9 1' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 8px 6px;
+    }
+    .filter-grid input[type="checkbox"]:hover { border-color: var(--bordeaux); }
+    .filter-gap { width: 100%; }
+    .filter-section { margin-top: 2.8rem; }
+    .filter-actions { display: flex; gap: 1.2rem; margin-bottom: 1rem; padding-left: 1rem; }
+    .filter-btn { background: none; border: none; font-family: Georgia, serif; font-size: 0.74rem; color: var(--bordeaux-light); padding: 0; cursor: pointer; letter-spacing: 0.03em; text-decoration: underline; text-decoration-color: var(--bordeaux-faint); text-underline-offset: 2px; transition: all 0.15s; }
+    .filter-btn:hover { color: var(--bordeaux); text-decoration-color: var(--bordeaux); }
+
+
+    /* Highlights section — bordeaux */
+    .section-hl h2 { border-bottom-color: var(--bordeaux-pale); }
+    .section-hl .highlights-intro { color: var(--bordeaux-mid); }
+    .section-hl .filter-grid label:hover { color: var(--bordeaux); }
+
+    @media (max-width: 900px) {
+      main { padding: 0 1.5rem; }
+      .filter-section { margin-top: 2rem; }
+    }
+    @media (max-width: 600px) {
+      main { padding: 0 1rem; }
+      section h2 { margin-left: -1rem; }
+      .filter-section { margin-top: 1.6rem; }
+      .filter-grid { gap: 0.5rem 1.2rem; }
+    }
+
+
+    .tag-sep { color: var(--bordeaux-pale); font-size: 0.8rem; padding: 0 0.15rem; user-select: none; align-self: center; }
+    .tag-plus { color: #ccc; font-size: 0.9rem; padding: 0 0.15rem; user-select: none; align-self: center; }
+    .tags-row { align-items: center; }
+
+    /* Filter panel (left, collapsible) */
+    .filter-panel {
+      position: fixed;
+      top: 5rem;
+      left: 0;
+      width: 280px;
+      max-height: calc(100vh - 8rem);
+      background: #fefefe;
+      border: 1px solid #e0ddd8;
+      border-left: none;
+      border-radius: 0 4px 4px 0;
+      z-index: 15;
+      transform: translateX(-256px);
+      transition: transform 0.3s ease;
+      display: flex;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.06);
+    }
+    .filter-panel.open { transform: translateX(0); }
+    .filter-panel-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.2rem 1.1rem 1.5rem 1.2rem;
+    }
+    .filter-panel-tab {
+      width: 26px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: #f8f7f3;
+      border-left: 1px solid #e0ddd8;
+      border-radius: 0 4px 4px 0;
+      writing-mode: vertical-rl;
+      font-family: Georgia, serif;
+      font-size: 0.64rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--bordeaux-mid);
+      user-select: none;
+    }
+    .filter-panel-tab:hover { color: var(--bordeaux); }
+    .filter-panel-body h3 {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      margin: 0 0 0.7rem;
+      font-weight: normal;
+    }
+    .filter-panel-intro {
+      font-size: 0.76rem;
+      font-style: italic;
+      color: var(--bordeaux-mid);
+      margin: 0 0 1rem;
+      line-height: 1.5;
+    }
+    .filter-panel .filter-actions { padding-left: 0; gap: 1.1rem; margin-bottom: 1rem; }
+    .filter-panel .filter-grid {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap: 0.6rem;
+      padding-left: 0;
+    }
+    .filter-panel .filter-grid label { font-size: 0.8rem; }
+    .todo-note { color: #1a4fcc !important; background: #fff3a0; display: inline-block; padding: 0.1rem 0.4rem; font-weight: bold; letter-spacing: 0.03em; margin-top: 0.4rem; }
+    .todo-extra { color: #1a4fcc; background: #fff3a0; display: inline-block; padding: 0.1rem 0.4rem; margin-top: 0.3rem; font-style: italic; }
+  </style>
+</head>
+<body>
+  <nav>
+    <button onclick="setLang('fr')" id="btn-fr">FR</button>
+    <span>·</span>
+    <button onclick="setLang('en')" id="btn-en" class="active">EN</button>
+    <span>·</span>
+    <button onclick="setLang('he')" id="btn-he">עב</button>
+  </nav>
+
+  <main>
+    <div class="cv-header">
+      <h1>Elena Hagege</h1>
+      <p class="tagline">Result Oriented &nbsp;|&nbsp; Data Driven</p>
+      <p class="positioning">13 years leading product across startups, scale-ups and large corporations</p>
+    </div>
+
+    <section class="section-hl">
+      <h2 id="section-highlights">Highlights</h2>
+      <p class="highlights-intro" id="highlights-intro">Each tag represents a core competency. Click to surface supporting evidence across 13 years of product leadership.</p>
+      <div class="tags tags-row" style="margin-bottom:0.5rem;">
+        <span class="tag" data-tag="leadership" data-color="#6b9e7e" onclick="activateTag('leadership')">Strategic Leadership</span>
+        <span class="tag-sep">›</span>
+        <span class="tag" data-tag="strategy" data-color="#9b7ec8" onclick="activateTag('strategy')">Product Vision and Strategy</span>
+        <span class="tag-sep">›</span>
+        <span class="tag" data-tag="orgs" data-color="#5a8fa8" onclick="activateTag('orgs')">Build Product Orgs</span>
+        <span class="tag-sep">›</span>
+        <span class="tag" data-tag="execution" data-color="#6e8e7a" onclick="activateTag('execution')">Execution and Delivery</span>
+        <span class="tag-sep">›</span>
+        <span class="tag" data-tag="monitoring" data-color="#7a8ea0" onclick="activateTag('monitoring')">Monitoring</span>
+      </div>
+      <div class="tags tags-row" style="margin-bottom:0.5rem;">
+        <span class="tag" data-tag="data" data-color="#86b560" onclick="activateTag('data')">Data-driven</span>
+        <span class="tag-plus">+</span>
+        <span class="tag" data-tag="crossfunc" data-color="#b08860" onclick="activateTag('crossfunc')">Cross-functional Leadership</span>
+        <span class="tag-plus">+</span>
+        <span class="tag" data-tag="ai" data-color="#d4875a" onclick="activateTag('ai')">AI-native Expertise</span>
+      </div>
+      <div class="tags tags-row">
+        <span class="tag" data-tag="startup" data-color="#c87878" onclick="activateTag('startup')">Entrepreneurship &amp; 0→1</span>
+      </div>
+            <div id="tag-bar">
+        <strong id="tag-bar-label"></strong><span class="tag-bar-desc" id="tag-bar-desc"></span>
+        <span class="tag-bar-clear" onclick="clearHighlights()">✕ clear</span>
+      </div>
+    </section>
+
+    <section>
+      <h2 id="section-exp">Experience</h2>
+      <div class="job">
+        <div class="job-header">
+          <span class="job-dates">2026</span>
+          <span class="job-company">Freelance</span>
+          <span class="job-type">Early stage startups, eCommerce or SAAS BtoB and SAAS BtoC</span>
+        </div>
+        <p class="job-context" id="job1-ctx">Responding to incoming network-powered demand to assist early-stage startups in their AI-related Product work.</p>
+        <ul class="job-items">
+          <li data-tags="ai orgs execution" data-proof-ai="Wrote [N]+ tickets and restructured the full product backlog in under 72 hours — using Claude, ChatGPT and Claude Code. [N] weeks of documentation debt eliminated in [N] days." data-proof-orgs="Turned [N] weeks of accumulated spec debt into a clean, AI-compatible backlog — QA checklists, standardized templates, reorganized epics. Team unblocked immediately.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job1-1t">Product ops.</strong><span id="job1-1d"> Draft a large volume of tickets, clean Jira, reorganize specifications for the Dev and QA team in an exceptionally short time frame.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Rapidly restructure Jira backlog and product specs to unblock a development team stalled by documentation debt.</li>
+              <li><strong>Actions:</strong> Wrote 40+ tickets from scratch; reorganized programs, epics and user stories; standardized spec format compatible with AI coding tools; updated and cleaned jira tickets, cleaned outdated backlog; set up QA checklist templates, wireframes checklist template, and PRD ticket framework.</li>
+              <li><strong>Impact:</strong> Dev team unblocked. What was in the founder's mind is now written, no more bottle neck on them. Edge scenarios and missing requirements have been spotted and addressed before the dev team needed the information.</li>
+              <li><strong>Tools:</strong> ChatGPT for simple rephrase, and to challenge the completion of the first template-tickets. Once the first core tickets done, I "discussed" the desired features with Claude Code, which scaled the process and produced the tickets. I verified them with Claude code, Claude, Chat GPT and manually.</li>
+              <li><strong>Note:</strong> at the time of this mission, I did not trust AI enought to no verify all the tickets manually. The mission was executed faster with AI then if I had to do it all manually, but end-to-end the time difference was not huge. However, the process in place enables the company to scale easily, in an effective way, with little Product resources (probably one senior PM only).</li>
+              <li class="todo-note">ELENA TO COMPLETE THIS MISSION</li>
+              <li class="todo-extra">MSIE Connect legacy Portfolio</li>
+            </ul></div>
+          </li>
+          <li data-tags="ai strategy orgs" data-proof-ai="AI-assisted audit methodology — full product process diagnosis + prioritized action plan delivered in 2 weeks instead of the usual 4–6. Release cycle shortened by [N]% in the next sprint." data-proof-strategy="Assessed process maturity, mapped the release pipeline, identified [N] critical blockers — and designed the strategic roadmap to AI readiness. Actionable in sprint one." data-proof-orgs="[N] blockers removed. Release cycle shortened by [N]%. Team equipped and ready for AI tool adoption — within the next sprint.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job1-2t">Product Audit.</strong><span id="job1-2d"> Assess the logic and solidity of a company's product process, remove blockers, and prepare the team to introduce AI.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Diagnose and rebuild a startup's product process ahead of an AI transformation initiative.</li>
+              <li><strong>Actions:</strong> Interviewed PMs and engineering leads; mapped the release pipeline; identified [N] critical blockers; delivered written audit with prioritized action plan in 2 weeks.</li>
+              <li><strong>Impact:</strong> Release cycle shortened by [N]%; team ready to onboard AI coding tools within the following sprint.</li>
+              <li><strong>Tools:</strong> Miro, Notion, Claude</li>
+              <li><strong>Note:</strong> Process audits for small teams (5–25 people) require a balance between rigour and pragmatism — the goal is to unlock momentum, not create bureaucracy.</li>
+              <li class="todo-note">ELENA TO COMPLETE THIS MISSION</li>
+            </ul></div>
+          </li>
+          <li data-tags="ai strategy orgs" data-proof-ai="Benchmarked [N]+ AI tools across every PM workflow (specs, QA, roadmap, research synthesis). Built the company's first AI Product Playbook. Unified [N] PMs from [N] different tool stacks onto 2 shared tools." data-proof-strategy="Designed the org-wide AI toolchain strategy — not a personal habit, a company standard. New PM onboarding time cut by [N]%." data-proof-orgs="Eliminated AI fragmentation: from [N] individual tool stacks to 1 unified workflow and playbook. [N]% faster PM onboarding. Change management, not just tool selection.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job1-3t">Transition to AI.</strong><span id="job1-3d"> Rationalize team structure, test and choose AI tools for the entire org, and unify the AI process across all PMs.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Unify the AI toolchain and process across a product organization fragmented by individual tool choices.</li>
+              <li><strong>Actions:</strong> Benchmarked [N]+ AI tools across PM workflows; ran 2-week pilots with each team; wrote the company's first AI Product Playbook.</li>
+              <li><strong>Impact:</strong> Reduced tool fragmentation from [N] stacks to 2 unified tools; onboarding time for new PMs cut by [N]%.</li>
+              <li><strong>Tools:</strong> Claude, ChatGPT, Copilot, Gemini, Linear</li>
+              <li><strong>Note:</strong> The biggest barrier to AI adoption is not tool capability — it's agreeing on a shared process. This is a change management challenge as much as a technical one.</li>
+              <li class="todo-note">ELENA TO COMPLETE THIS MISSION</li>
+              <li class="todo-extra">find a project</li>
+            </ul></div>
+          </li>
+          <li data-tags="ai startup" data-proof-ai="Enabled [N] non-technical founders to ship working MVPs using only Claude Code — no CTO, no dev team. [N] MVPs shipped in [N]–[N] weeks. One raised a pre-seed round on the strength of the prototype." data-proof-startup="Product-technical co-founder on demand: defined scope, structured Claude Code prompts, managed the full build-measure-learn cycle. [N] startups shipped, [N] raised.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job1-4t">Assist Founders — vibe coding.</strong><span id="job1-4d"> Development of a startup using only Claude Code. Often no CTO in the team. My main activity.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Enable non-technical founders to ship working products without a CTO or dev team, using Claude Code as the sole development tool.</li>
+              <li><strong>Actions:</strong> Defined MVP scope; structured Claude Code prompts; iterated through build-measure-learn cycles; managed technical debt and architecture decisions alongside each founder.</li>
+              <li><strong>Impact:</strong> [N] startups shipped functional MVPs in [N]–[N] weeks; one raised a pre-seed round on the basis of the working prototype.</li>
+              <li><strong>Tools:</strong> Claude Code, Claude Design, Vercel, Supabase</li>
+              <li><strong>Note:</strong> Vibe coding requires strong product judgment (tight scope), technical intuition (catch AI errors), and founder coaching (manage expectations).</li>
+              <li class="todo-note">ELENA TO COMPLETE THIS MISSION</li>
+              <li class="todo-extra">My Health Journal App, Detailed CV, Israel History, Dan the Hazan, Saint Michel Valetta</li>
+            </ul></div>
+          </li>
+          <li data-tags="ai startup" data-proof-ai="[N] custom AI tools delivered in production. One replaced [N] hours/week of manual senior team work — live within [N] weeks. Scope definition was the hardest part, not the build." data-proof-startup="AI tool design and delivery for early-stage startups with no technical team. Use case definition → model selection → build supervision → production validation.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job1-5t">Assist Founders — AI tools.</strong><span id="job1-5d"> Design and development of AI tools tailored to each startup's specific operational or product problems.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Design and build custom AI tools solving specific problems for early-stage startups.</li>
+              <li><strong>Actions:</strong> Defined use case and success criteria; selected models and architecture; supervised the build; validated outputs against real business data.</li>
+              <li><strong>Impact:</strong> [N] custom AI tools delivered in production; one replaced a manual process consuming [N] hours/week of senior team time.</li>
+              <li><strong>Tools:</strong> Claude API, Claude Code, OpenAI API, Supabase</li>
+              <li><strong>Note:</strong> The key challenge is scoping. Most founders overestimate what an AI tool needs to do on day one.</li>
+              <li class="todo-note">ELENA TO COMPLETE THIS MISSION</li>
+              <li class="todo-extra">News parser, My Health Journal</li>
+            </ul></div>
+          </li>
+          <li data-tags="ai">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job1-6t">Deliver AI-generated content, prompt engineering.</strong><span id="job1-6d"> Pro bono, family and friends.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</li>
+              <li class="todo-note">ELENA TO COMPLETE THIS MISSION</li>
+            </ul></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-dates">2021–2025</span>
+          <span class="job-company">Shutterfly</span>
+          <span class="job-type">E-commerce</span>
+        </div>
+        <p class="job-context" id="job2-ctx">Large American corporation, market leader. Reported to Product Director.</p>
+        <ul class="job-items">
+          <li data-tags="leadership strategy data orgs crossfunc execution" data-proof-execution="CMS migration on time and on budget — a [N]-month roadmap executed across a distributed US/Israel team." data-proof-leadership="Led a cross-functional squad ([N] engineers, [N] designers, [N] analyst) from Israel — aligned quarterly delivery with US Director of Product across [N] business units. On time, on budget." data-proof-strategy="Owned the 3-year CMS roadmap for a market leader processing [N]M+ orders/year. Migration delivered on time — content publishing speed improved by [N]%, marketing team fully autonomous." data-proof-data="Mixpanel + Adobe Analytics used for feature prioritization and rollout impact measurement. CMS performance tracked against defined KPIs throughout the migration." data-proof-orgs="Delivered full CMS migration: on time, on budget, [N]% faster content publishing, [N] business units unblocked. Built the process that made a distributed team ship predictably." data-proof-crossfunc="Aligned engineering, design, data, content ops and marketing leadership across US/Israel time zones. Navigated matrix org dynamics in a large American corporation.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job2-1t">Head of Product, CMS.</strong><span id="job2-1d"> Drove roadmap and execution. In charge of communication with US stakeholders.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Own the CMS product roadmap for Shutterfly's core e-commerce platform — a system critical to publishing thousands of seasonal products across all print categories.</li>
+              <li><strong>Actions:</strong> Defined and drove the 3-year CMS roadmap; led cross-functional squad ([N] engineers, [N] designers, [N] analyst); aligned quarterly delivery with US Director of Product; managed migration from legacy to headless CMS; coordinated releases across [N] business units.</li>
+              <li><strong>Impact:</strong> CMS migration delivered on time and on budget; content publishing speed improved by [N]%; marketing team became self-service, reducing product dependency for content updates.</li>
+              <li><strong>Tools:</strong> Jira, Confluence, Mixpanel, Adobe Analytics, Figma</li>
+              <li><strong>Note:</strong> Running a team from Israel in a large US corporation required exceptional stakeholder communication and the ability to navigate matrix organization dynamics.</li>
+            </ul></div>
+          </li>
+          <li data-tags="data crossfunc monitoring" data-proof-monitoring="Post-purchase journey tracked via Adobe Analytics. [N] friction points identified, impact measured over [N] quarters." data-proof-data="Adobe Analytics + Braze-driven analysis of post-purchase journeys. Identified [N] key friction points — contributed to [N]% improvement in repeat purchase rate over [N] quarters." data-proof-crossfunc="Partnered with CRM, marketing and data science on retention touchpoints. Ran A/B tests on re-engagement flows. Translated behavioral data into roadmap-ready findings.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job2-2t">Product Specialist, E-commerce Retention.</strong><span id="job2-2d"> (6 months)</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Understand and improve repeat purchase rate across Shutterfly's core e-commerce funnel.</li>
+              <li><strong>Actions:</strong> Analyzed post-purchase journeys via Adobe Analytics; partnered with CRM and marketing on loyalty touchpoints; ran A/B tests on re-engagement flows; identified [N] key friction points.</li>
+              <li><strong>Impact:</strong> Contributed to [N]% improvement in repeat purchase rate over [N] quarters.</li>
+              <li><strong>Tools:</strong> Adobe Analytics, Optimizely, Braze, Jira</li>
+              <li><strong>Note:</strong> 6-month deep dive that built expertise in retention mechanics at scale — the foundation for all subsequent e-commerce product work.</li>
+            </ul></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-dates">2019–2020</span>
+          <span class="job-company">Portfolio Manager</span>
+          <span class="job-type">SAAS suite</span>
+        </div>
+        <p class="job-context" id="job3-ctx">New startup. Reported to CEO.</p>
+        <ul class="job-items">
+          <li data-tags="leadership strategy orgs startup crossfunc execution" data-proof-execution="Product org operational in 3 months. Funding round closed on the strength of the delivered roadmap." data-proof-leadership="Hired and structured the first PM team. Designed all agile rituals, set the product standards, built the culture from scratch. Product org operational in 3 months — company closed next funding round on the strength of the roadmap." data-proof-strategy="Defined product vision with the CEO. Built the first investor-ready roadmap aligned to milestone commitments. Company raised [next funding round] [N] months later — product narrative was central to the raise." data-proof-orgs="Built the entire product organization from zero in 3 months: hiring, processes, sprint rituals, backlog hygiene, cross-team communication. Nothing existed before." data-proof-startup="Joined with zero product structure. Left with a funded company, a built product org, and a roadmap that served as the foundation for the next growth phase." data-proof-crossfunc="Established the communication bridge between engineering and business as the first PM — turned ad-hoc requests into a structured, prioritized system.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job3-1t">Head of Product, First PM.</strong><span id="job3-1d"> Built the product department: organization, processes and roadmap.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Build the product function from zero at a new SAAS startup — no processes, no culture, no PM team.</li>
+              <li><strong>Actions:</strong> Hired and onboarded [N] PMs; designed all agile rituals; created the first product roadmap aligned to investor milestones; built the engineering/business bridge; defined product vision with CEO.</li>
+              <li><strong>Impact:</strong> Product organization operational in 3 months; company raised next funding round with product roadmap at the center of the narrative.</li>
+              <li><strong>Tools:</strong> Jira, Notion, Mixpanel</li>
+              <li><strong>Note:</strong> Being the first PM is simultaneously IC, manager, and culture-setter. You build the vocabulary and the standards everything else is built on.</li>
+            </ul></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-dates">2018–2019</span>
+          <span class="job-company">Wynd</span>
+          <span class="job-type">SAAS omnichannel for retailers</span>
+        </div>
+        <p class="job-context" id="job4-ctx">Fast growing, 350-person startup. Reported to CEO.</p>
+        <ul class="job-items">
+          <li data-tags="leadership strategy orgs crossfunc startup execution" data-proof-execution="All 5 products delivered on the committed roadmap. Kiosk live in [N]+ retail locations as planned." data-proof-leadership="Managed [N] product squads ([N]+ people: PMs, engineers, designers). The only product leader in the company, reporting directly to the CEO. Scaled the team from [N] to [N] people in 6 months." data-proof-strategy="Owned the roadmap for [N] BtoC SAAS products simultaneously — mobile app, web portal, kiosk, loyalty platform, store staff app. All [N] delivered on the committed roadmap." data-proof-orgs="Scaled the product org from [N] to [N] people in 6 months — while shipping all [N] products on time. Kiosk launched in [N]+ retail locations across France." data-proof-crossfunc="Coordinated cross-product dependencies across [N] squads. Synchronized delivery of [N] concurrent product lines from a single, committed roadmap. Zero delivery surprises." data-proof-startup="Joined at [N] people. Left at [N]. Present for the full hypergrowth phase — built product systems that scaled with the company.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job4-1t">Head of Product, Consumer Platforms.</strong><span id="job4-1d"> Lead 5 squads, developed 5 BtoC SAAS products (incl. kiosk). Delivered the roadmap.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Lead all consumer-facing products for Wynd, an omnichannel SAAS solution serving major French retailers.</li>
+              <li><strong>Actions:</strong> Managed [N] squads ([N]+ people); owned roadmap for [N] BtoC products (mobile, web, kiosk, loyalty, staff app); aligned with CEO; coordinated cross-product dependencies.</li>
+              <li><strong>Impact:</strong> All [N] products delivered on the committed roadmap. Kiosk launched in [N]+ retail locations. Team scaled from [N] to [N] people in 6 months.</li>
+              <li><strong>Tools:</strong> Jira, Confluence, Mixpanel, Figma</li>
+              <li><strong>Note:</strong> Managing [N] concurrent product lines is a forcing function for systems thinking — you build the right team and the right process, or nothing ships.</li>
+            </ul></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-dates">2017</span>
+          <span class="job-company">Lima Technologies</span>
+          <span class="job-type">SAAS BtoC personal cloud</span>
+        </div>
+        <p class="job-context" id="job5-ctx">6-year-old founded startup. Reported to CEO.</p>
+        <ul class="job-items">
+          <li data-tags="strategy data monitoring" data-proof-strategy="Owned mobile + web roadmap. Mixpanel-driven prioritization. Shipped [N] major features in 12 months — [N]% improvement in MAU retention. Contributed to the product pivot that extended the company's runway." data-proof-data="Feature prioritization 100% driven by Mixpanel retention data. [N]% improvement in monthly active user retention over 12 months.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job5-1t">Senior Product Manager.</strong><span id="job5-1d"></span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Drive user-facing feature development for a BtoC personal cloud product competing in a market disrupted by Dropbox and Google Drive.</li>
+              <li><strong>Actions:</strong> Owned mobile and web roadmap; ran user research; prioritized based on Mixpanel retention data; collaborated closely with CEO and CTO.</li>
+              <li><strong>Impact:</strong> Shipped [N] major features in 12 months; improved MAU retention by [N]%; contributed to the product pivot that extended the company's runway.</li>
+              <li><strong>Tools:</strong> Jira, Mixpanel, Google Analytics, UserTesting</li>
+              <li><strong>Note:</strong> Working in a mature startup competing against tech giants sharpens instinct for differentiation — you must win on experience when you cannot win on reach.</li>
+            </ul></div>
+          </li>
+          <li data-tags="leadership orgs data execution monitoring" data-proof-execution="Planning surprises reduced by [N]%. On-time delivery became the norm, not the exception." data-proof-monitoring="CEO-level dashboards: sprint velocity, cross-team dependencies, roadmap health — all real-time." data-proof-leadership="Designed and owned the cross-team delivery process as sole PMO — reporting directly to CEO. Planning surprises reduced by [N]%. Leadership gained real-time visibility for the first time." data-proof-orgs="Implemented OKRs, sprint velocity tracking, dependency mapping and quarterly roadmap reviews as sole PMO. Process adopted company-wide. Planning surprises down [N]%." data-proof-data="Built CEO-level dashboards tracking sprint velocity, cross-team dependencies and roadmap health in real time. [N]% reduction in planning surprises.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job5-2t">Program Management.</strong><span id="job5-2d"> First and only PMO. Implemented a data-driven delivery approach.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Introduce predictability and data-driven decision-making as Lima's first and only PMO.</li>
+              <li><strong>Actions:</strong> Implemented OKR framework; built delivery dashboards for the CEO; mapped cross-team dependencies; introduced sprint velocity tracking; designed quarterly roadmap review process.</li>
+              <li><strong>Impact:</strong> Planning surprises reduced by [N]%; CEO gained real-time visibility into product health; process adopted as standard across all teams.</li>
+              <li><strong>Tools:</strong> Jira, Google Sheets, Mixpanel</li>
+              <li><strong>Note:</strong> Being the only PMO at a startup means building the system, running it, and selling it to people who think process is overhead.</li>
+            </ul></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-dates">2015–2017</span>
+          <span class="job-company">Doctipharma</span>
+          <span class="job-type">BtoC marketplace</span>
+        </div>
+        <p class="job-context" id="job6-ctx">Startup launched by a market-leader media corporation. Reported to CPO.</p>
+        <ul class="job-items">
+          <li data-tags="strategy orgs" data-proof-strategy="Defined catalog taxonomy and data model from zero. Grew from 0 to [N],000+ SKUs in 18 months — became the company's primary competitive differentiator, enabling expansion to [N]+ pharmacy partners." data-proof-orgs="Built the catalog operations team and process from scratch. 0 to [N],000+ SKUs in 18 months. In a marketplace, the catalog IS the product.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job6-1t">Head of Catalog and Merchandising.</strong><span id="job6-1d"></span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Build the product catalog from scratch for a BtoC pharmacy marketplace — the core asset enabling the business model.</li>
+              <li><strong>Actions:</strong> Defined catalog taxonomy and data model; led catalog ops team; set data quality standards; built merchandising rules; grew catalog from 0 to [N],000+ SKUs in 18 months; negotiated data feeds with pharmacy chains.</li>
+              <li><strong>Impact:</strong> Catalog became the company's primary competitive differentiator; category coverage enabled expansion to [N]+ pharmacy partners.</li>
+              <li><strong>Tools:</strong> Internal PIM, Google Analytics, Excel, Jira</li>
+              <li><strong>Note:</strong> In a marketplace, the catalog IS the product — its quality directly determines conversion, trust, and growth.</li>
+            </ul></div>
+          </li>
+          <li data-tags="strategy data crossfunc monitoring" data-proof-strategy="Led search, recommendation and funnel feature discovery — from user research to shipped feature. Every initiative started with a defined hypothesis and success metric." data-proof-monitoring="A/B tested every funnel improvement. +[N]% search conversion tracked and validated before full rollout." data-proof-data="+[N]% search conversion. Increased average basket size via cross-sell launch. Reduced cart drop-off. All validated by A/B testing before full rollout." data-proof-crossfunc="Coordinated data science (search algorithms), UX, and engineering. Defined success metrics before building. Shipped only what the data confirmed.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job6-2t">Product Manager.</strong><span id="job6-2d"> Search, cross-sell, funnel, e-commerce features. (6 months)</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Improve e-commerce KPIs (search, conversion, cross-sell) for a marketplace with a complex catalog.</li>
+              <li><strong>Actions:</strong> Led discovery for search and recommendation features; A/B tested funnel steps; worked with data team on cross-sell algorithms; defined UX improvements for category and product pages.</li>
+              <li><strong>Impact:</strong> +[N]% search conversion; increased average basket size; reduced cart drop-off.</li>
+              <li><strong>Tools:</strong> Google Analytics, Optimizely, Jira, SQL</li>
+              <li><strong>Note:</strong> 6 months of focused e-commerce product work — the fastest way to develop intuition for conversion optimization.</li>
+            </ul></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-dates">2013–2014</span>
+          <span class="job-company">Reverso</span>
+          <span class="job-type">SAAS + E-commerce</span>
+        </div>
+        <p class="job-context" id="job7-ctx">20-person company, market leader. Reported to CEO.</p>
+        <ul class="job-items">
+          <li data-tags="strategy crossfunc" data-proof-strategy="Owned the product requirements and roadmap for a B2B e-commerce platform selling professional human translation services." data-proof-crossfunc="Managed an external web agency end-to-end: wireframes, product requirements, delivery and QA — as the single point of contact.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job7-1t">Product 1 — B2B E-commerce.</strong><span id="job7-1d"> Selling a service: professional human translation.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Improve the B2B e-commerce platform selling professional human translation services to business clients.</li>
+              <li><strong>Actions:</strong> Designed wireframes and mockups; wrote the product requirements; managed the relationship with an external web agency (vendor) building the platform; coordinated delivery, reviews and QA throughout.</li>
+              <li><strong>Impact:</strong> Delivered an improved online platform; smoother ordering and quoting experience for business clients. [N]% improvement in [conversion / order completion].</li>
+              <li><strong>Tools:</strong> Wireframing tools, Google Analytics, Jira</li>
+              <li><strong>Note:</strong> Working through an external agency sharpened my ability to specify clearly, manage a vendor, and hold quality standards without a hands-on internal team.</li>
+            </ul></div>
+          </li>
+          <li data-tags="leadership strategy">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job7-2t">Product 2 — B2C SAAS.</strong><span id="job7-2d"> Online platform for document and website translation.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Own the product for a B2C SAAS platform translating documents and full websites.</li>
+              <li><strong>Actions:</strong> Defined the roadmap and specifications; managed the single dedicated in-house developer; prioritized features; ran weekly product reviews with the CEO.</li>
+              <li><strong>Impact:</strong> Shipped [N] features over the period; improved the translation workflow and user experience. [N]% growth in [usage / subscriptions].</li>
+              <li><strong>Tools:</strong> Jira, Google Analytics</li>
+              <li><strong>Note:</strong> Driving a product with a single developer demands ruthless prioritization — every sprint had to count.</li>
+            </ul></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-dates">2010–2013</span>
+          <span class="job-company">Shoette</span>
+        </div>
+        <ul class="job-items">
+          <li data-tags="leadership strategy orgs startup crossfunc" data-proof-leadership="CEO of an international startup. Hired and led a team of [N] across product, ops and commercial — [N] countries, all functions owned." data-proof-strategy="Designed and executed the full product and GTM strategy across [N] countries — physical product concept to retail distribution, backed by KIMA VENTURES seed fund." data-proof-orgs="Built e-commerce and retail distribution in [N] countries within 2 years. [N] distribution partners. Every system, every process, built from zero." data-proof-startup="Founded, built, funded, distributed — from idea to [N] countries in [N] years. Raised seed from KIMA VENTURES. The founding experience that underpins every product decision since." data-proof-crossfunc="Managed all functions as CEO: product design, manufacturing, e-commerce, retail partnerships, marketing, finance — across [N] countries simultaneously.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job8-1t">CEO &amp; founder.</strong><span id="job8-1d"> Created a physical innovative product. International distribution in five countries. Backed by seed VC fund KIMA VENTURES.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Create a physical consumer product from concept to market and build an international distribution network.</li>
+              <li><strong>Actions:</strong> Designed product and manufacturing process; built e-commerce + retail distribution in [N] countries; raised seed from KIMA VENTURES; managed all functions; hired and led a team of [N].</li>
+              <li><strong>Impact:</strong> Launched in [N] countries within 2 years. Attracted backing from one of France's most prestigious seed VC funds. Built brand recognition in the lifestyle accessories market.</li>
+              <li><strong>Tools:</strong> Shopify, Google Analytics, Excel, Mailchimp</li>
+              <li><strong>Note:</strong> This founding experience is the bedrock of every product decision since — I understand the full cycle from idea to customer at first hand.</li>
+            </ul></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-dates">2008</span>
+          <span class="job-company">Real Value Consulting</span>
+          <span class="job-type">Consulting — Market and competitive intelligence</span>
+        </div>
+        <ul class="job-items">
+          <li data-tags="strategy data"
+              data-proof-strategy="Delivered competitive intelligence reports informing senior management strategic decisions."
+              data-proof-data="Managed internal information and knowledge bases; structured data flows across the consulting practice.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job9-1t">Junior Consultant.</strong><span id="job9-1d"> Deep market analysis, business strategy, and internal information and knowledge management.</span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li><strong>Mission:</strong> Provide strategic insights to clients through market analysis and competitive intelligence. Reported to CEO. Also acted as program manager for a pool of 65 freelance consultants, deployed on projects based on client and project requirements.</li>
+              <li><strong>Actions:</strong> Conducted deep market research and competitive benchmarks; developed business strategy recommendations; structured and maintained internal information and knowledge bases.</li>
+              <li><strong>Signature skill:</strong> Data visualization.</li>
+              <li><strong>Impact:</strong> Delivered competitive intelligence reports used in senior management strategic decisions.</li>
+              <li><strong>Tools:</strong> Excel, PowerPoint, market research databases, press and archive databases, datamining tools</li>
+              <li><strong>Note:</strong> First professional experience — developed core analytical, strategic and synthesis skills in a demanding consulting environment.</li>
+            </ul></div>
+          </li>
+        </ul>
+      </div>
+
+    </section>
+
+    <section>
+      <h2 id="section-edu">Education</h2>
+      <div class="edu">
+        <div class="edu-header">
+          <span class="edu-year">2015</span>
+          <span class="edu-school" id="edu1-s">Le Wagon Paris</span>
+        </div>
+        <div class="edu-diploma" id="edu1">"Web Design Express Certificate"</div>
+      </div>
+
+      <div class="edu">
+        <div class="edu-header">
+          <span class="edu-year">2010</span>
+          <span class="edu-school" id="edu2-s">ESCP Europe Paris</span>
+        </div>
+        <div class="edu-diploma" id="edu2">Specialized Master in Product Development &amp; Entrepreneurship</div>
+        <div class="edu-achievement" id="edu2-a">Class president &nbsp;·&nbsp; "Best pitch" Award</div>
+      </div>
+
+      <div class="edu">
+        <div class="edu-header">
+          <span class="edu-year">2007</span>
+          <span class="edu-school" id="edu3-s">INSEEC</span>
+        </div>
+        <div class="edu-diploma" id="edu3">Master of Science in Business Strategy</div>
+        <div class="edu-achievement" id="edu3-a">Course fully in English &nbsp;·&nbsp; Major: Data and market intelligence</div>
+      </div>
+
+      <div class="edu">
+        <div class="edu-header">
+          <span class="edu-year">2005</span>
+          <span class="edu-school" id="edu4-s">Université Paris 1 Sorbonne</span>
+        </div>
+        <div class="edu-diploma" id="edu4">Bachelor in Economics</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 id="section-lang">Languages</h2>
+      <div class="languages" id="languages">English: fluent &nbsp;·&nbsp; French: native &nbsp;·&nbsp; Hebrew: learning &nbsp;·&nbsp; Italian: scholar</div>
+    </section>
+
+    <a class="back" href="/detail/" id="back">← back</a>
+  </main>
+
+  <footer>
+    <div class="footer-seeking">
+      <span class="date" id="footer-date">June 2026 :</span><span id="footer-seeking">Seeking a CPO / VP Product / AI Product Lead position</span>
+    </div>
+    <div class="footer-contact">
+      <a href="mailto:elena.hagege@gmail.com">elena.hagege@gmail.com</a>
+      <span>052-543-7433</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleDetail(toggle) {
+      let el = toggle.nextElementSibling;
+      while (el && !el.classList.contains('li-detail')) el = el.nextElementSibling;
+      if (!el) return;
+      const bullet = toggle.querySelector('.bullet');
+      const open = el.style.display === 'block';
+      el.style.display = open ? 'none' : 'block';
+      bullet.textContent = open ? '+' : '−';
+    }
+
+    const tagConfig = {
+  leadership: {color:"#6b9e7e",en:"Strategic Leadership",fr:"Leadership Stratégique",he:"מנהיגות אסטרטגית",desc:"C-suite & board alignment, P&L mindset & business outcomes."},
+  strategy:   {color:"#9b7ec8",en:"Product Vision and Strategy",fr:"Vision & Stratégie Produit",he:"חזון ואסטרטגיית מוצר",desc:"Long-term roadmap, business alignment, GTM, market positioning. OKRs & metric definition."},
+  orgs:       {color:"#5a8fa8",en:"Build Product Orgs",fr:"Construction d'Org Produit",he:"בניית ארגון מוצר",desc:"Hiring and Mentoring PMs, establishing culture, define processes and delivery structure that works for us."},
+  execution:  {color:"#6e8e7a",en:"Execution and Delivery",fr:"Exécution & Livraison",he:"ביצוע ומסירה",desc:"Shipping on time and on budget — across distributed teams and complexity."},
+  monitoring: {color:"#7a8ea0",en:"Monitoring",fr:"Monitoring",he:"מוניטורינג",desc:"Metrics, dashboards, A/B testing — measuring impact at every step."},
+  data:       {color:"#86b560",en:"Data-driven",fr:"Data-driven",he:"מבוסס נתונים",desc:"Metrics definition, A/B testing, analytics at every decision point."},
+  crossfunc:  {color:"#b08860",en:"Cross-functional Leadership",fr:"Leadership Transversal",he:"מנהיגות רוחבית",desc:"Communicate outside of Product org, provide clarity, transparency and predictability to the product stakeholders. Set up process where every department know what they have to do for Product, and what Product has to do for them."},
+  ai:         {color:"#d4875a",en:"AI-native Expertise",fr:"Expertise IA Native",he:"מומחיות AI מובנית",desc:"Using AI to build, audit, and scale product work. LLM & generative AI knowledge. Prompt engineering & tool fluency. AI toolchain evaluation & adoption."},
+  startup:    {color:"#c87878",en:"Entrepreneurship & 0→1",fr:"Entrepreneuriat & 0→1",he:"יזמות ו-0 עד 1",desc:"Founding, early-stage, building from nothing with speed and judgment. Business outcomes focus."},
+};
+
+    let activeTag = null;
+    let currentLang = 'en';
+
+    function activateTag(key) {
+      if (activeTag === key) { clearHighlights(); return; }
+      activeTag = key;
+      const cfg = tagConfig[key];
+      clearHighlights(false);
+
+      // Active tag button style
+      const btn = document.querySelector(`[data-tag="${key}"]`);
+      if (btn) {
+        btn.style.background = cfg.color;
+        btn.style.borderColor = cfg.color;
+        btn.style.color = 'white';
+      }
+      // Dim other tags
+      document.querySelectorAll('[data-tag]').forEach(el => {
+        if (el.dataset.tag !== key) el.style.opacity = '0.3';
+      });
+
+      // Tag bar
+      const bar = document.getElementById('tag-bar');
+      bar.style.display = 'block';
+      bar.style.background = hexToRgba(cfg.color, 0.1);
+      bar.style.borderLeft = `3px solid ${cfg.color}`;
+      bar.style.color = cfg.color;
+      document.getElementById('tag-bar-label').textContent = cfg[currentLang] || cfg.en;
+      document.getElementById('tag-bar-desc').textContent = cfg.desc;
+
+      // Job items
+      document.querySelectorAll('.job-items > li').forEach(li => {
+        const tags = (li.dataset.tags || '').split(' ');
+        if (tags.includes(key)) {
+          li.style.opacity = '1';
+          li.style.borderLeftColor = cfg.color;
+          li.style.paddingLeft = '0.6rem';
+          li.style.marginLeft = '-0.6rem';
+          li.style.backgroundColor = hexToRgba(cfg.color, 0.055);
+
+          const proofText = li.getAttribute(`data-proof-${key}`);
+          if (proofText) {
+            const toggle = li.querySelector('.li-toggle');
+            const proof = document.createElement('div');
+            proof.className = 'proof-callout';
+            proof.style.color = cfg.color;
+            proof.style.background = hexToRgba(cfg.color, 0.07);
+            proof.style.borderLeft = `2px solid ${cfg.color}`;
+            proof.textContent = proofText;
+            toggle.insertAdjacentElement('afterend', proof);
+          }
+        } else {
+          li.style.opacity = '0.15';
+        }
+      });
+    }
+
+    function clearHighlights(resetActive = true) {
+      if (resetActive) activeTag = null;
+      document.querySelectorAll('.proof-callout').forEach(el => el.remove());
+      document.querySelectorAll('.job-items > li').forEach(li => {
+        li.style.opacity = '';
+        li.style.borderLeftColor = 'transparent';
+        li.style.paddingLeft = '';
+        li.style.marginLeft = '';
+        li.style.backgroundColor = '';
+      });
+      document.querySelectorAll('[data-tag]').forEach(el => {
+        el.style.background = '';
+        el.style.borderColor = '';
+        el.style.color = '';
+        el.style.opacity = '';
+      });
+      document.getElementById('tag-bar').style.display = 'none';
+    }
+
+    function hexToRgba(hex, a) {
+      const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+      return `rgba(${r},${g},${b},${a})`;
+    }
+
+    const trans = {
+      en: {"lang":"en","dir":"ltr","back":"← back","footer-date":"June 2026 :","footer-seeking":"Seeking a CPO / VP Product / AI Product Lead position","section-highlights":"Highlights","highlights-intro":"Each tag represents a core competency. Click to surface supporting evidence across 13 years of product leadership.","section-exp":"Experience","section-edu":"Education","section-lang":"Languages","job9-1t":"Junior Consultant.","job9-1d":" Deep market analysis, business strategy, and internal information and knowledge management.","edu1-s":"Le Wagon Paris","edu1":"\"Web Design Express Certificate\"","edu2-s":"ESCP Europe Paris","edu2":"Specialized Master in Product Development & Entrepreneurship","edu2-a":"Class president · \"Best pitch\" Award","edu3-s":"INSEEC","edu3":"Master of Science in Business Strategy","edu3-a":"Course fully in English · Major: Data and market intelligence","edu4-s":"Université Paris 1 Sorbonne","edu4":"Bachelor in Economics","languages":"English: fluent · French: native · Hebrew: learning · Italian: scholar","job1-ctx":"Responding to incoming network-powered demand to assist early-stage startups in their AI-related Product work.","job2-ctx":"Large American corporation, market leader. Reported to Product Director.","job3-ctx":"New startup. Reported to CEO.","job4-ctx":"Fast growing, 350-person startup. Reported to CEO.","job5-ctx":"6-year-old founded startup. Reported to CEO.","job6-ctx":"Startup launched by a market-leader media corporation. Reported to CPO.","job7-ctx":"20-person company, market leader. Reported to CEO.","job1-1t":"Product ops.","job1-1d":" Draft a large volume of tickets, clean Jira, reorganize specifications for the Dev and QA team in an exceptionally short time frame.","job1-2t":"Product Audit.","job1-2d":" Assess the logic and solidity of a company's product process, remove blockers, and prepare the team to introduce AI.","job1-3t":"Transition to AI.","job1-3d":" Rationalize team structure, test and choose AI tools for the entire org, and unify the AI process across all PMs.","job1-4t":"Assist Founders — vibe coding.","job1-4d":" Development of a startup using only Claude Code. Often no CTO in the team. My main activity.","job1-5t":"Assist Founders — AI tools.","job1-5d":" Design and development of AI tools tailored to each startup's specific operational or product problems.","job1-6t":"Deliver AI-generated content, prompt engineering.","job1-6d":" Pro bono, family and friends.","job2-1t":"Head of Product, CMS.","job2-1d":" Drove roadmap and execution. In charge of communication with US stakeholders.","job2-2t":"Product Specialist, E-commerce Retention.","job2-2d":" (6 months)","job3-1t":"Head of Product, First PM.","job3-1d":" Built the product department: organization, processes and roadmap.","job4-1t":"Head of Product, Consumer Platforms.","job4-1d":" Lead 5 squads, developed 5 BtoC SAAS products (incl. kiosk). Delivered the roadmap.","job5-1t":"Senior Product Manager.","job5-1d":"","job5-2t":"Program Management.","job5-2d":" First and only PMO. Implemented a data-driven delivery approach.","job6-1t":"Head of Catalog and Merchandising.","job6-1d":"","job6-2t":"Product Manager.","job6-2d":" Search, cross-sell, funnel, e-commerce features. (6 months)","job7-1t":"Product 1 — B2B E-commerce.","job7-1d":" Selling a service: professional human translation.","job7-2t":"Product 2 — B2C SAAS.","job7-2d":" Online platform for document and website translation.","job8-1t":"CEO &amp; founder.","job8-1d":" Created a physical innovative product. International distribution in five countries. Backed by seed VC fund KIMA VENTURES."},
+      fr: {"lang":"fr","dir":"ltr","back":"← retour","footer-date":"Juin 2026 :","footer-seeking":"Recherche un poste CPO / VP Product / AI Product Lead","section-highlights":"Highlights","highlights-intro":"Chaque tag représente une compétence clé. Cliquez pour révéler les preuves sur 13 ans de leadership produit.","section-exp":"Expérience","section-edu":"Formation","section-lang":"Langues","job9-1t":"Consultant Junior.","job9-1d":" Analyse de marché approfondie, stratégie d'entreprise et gestion de l'information et des connaissances internes.","edu1-s":"Le Wagon Paris","edu1":"\"Web Design Express Certificate\"","edu2-s":"ESCP Europe Paris","edu2":"Mastère Spécialisé Développement Produit & Entrepreneuriat","edu2-a":"Déléguée de promotion · Lauréate \"Best pitch\"","edu3-s":"INSEEC","edu3":"Master of Science en Stratégie d'entreprise","edu3-a":"Cours entièrement en anglais · Majeure : Data et intelligence de marché","edu4-s":"Université Paris 1 Sorbonne","edu4":"Licence en Économie","languages":"Anglais : courant · Français : langue maternelle · Hébreu : en apprentissage · Italien : scolaire","job1-ctx":"Réponse à une demande entrante du réseau pour accompagner des startups early-stage dans leur travail Produit lié à l'IA.","job2-ctx":"Grande corporation américaine, leader du marché. Sous la direction du Directeur Produit.","job3-ctx":"Nouvelle startup. Sous la direction du CEO.","job4-ctx":"Startup en forte croissance, 350 personnes. Sous la direction du CEO.","job5-ctx":"Startup fondée depuis 6 ans. Sous la direction du CEO.","job6-ctx":"Startup lancée par un grand groupe média leader. Sous la direction du CPO.","job7-ctx":"Entreprise de 20 personnes, leader du marché. Sous la direction du CEO.","job1-1t":"Product ops.","job1-1d":" Rédaction d'un grand volume de tickets, nettoyage de Jira, réorganisation des specs pour Dev et QA en temps record.","job1-2t":"Audit Produit.","job1-2d":" Évaluation de la logique du processus produit, suppression des blocages, préparation à l'introduction de l'IA.","job1-3t":"Transition vers l'IA.","job1-3d":" Rationalisation de la structure d'équipe, choix des outils IA pour toute l'organisation, unification du processus IA.","job1-4t":"Accompagnement des fondateurs — vibe coding.","job1-4d":" Développement de leur startup en utilisant uniquement Claude Code. Mon activité principale.","job1-5t":"Accompagnement des fondateurs — outils IA.","job1-5d":" Conception et développement d'outils IA adaptés aux besoins spécifiques de chaque startup.","job1-6t":"Production de contenu généré par IA, prompt engineering.","job1-6d":" Pro bono, famille et amis.","job2-1t":"Head of Product, CMS.","job2-1d":" Pilotage de la roadmap et de l'exécution. En charge de la communication avec les parties prenantes US.","job2-2t":"Product Specialist, Rétention e-commerce.","job2-2d":" (6 mois)","job3-1t":"Head of Product, premier PM.","job3-1d":" Construction du département produit : organisation, processus et roadmap.","job4-1t":"Head of product, plateformes consommateurs.","job4-1d":" Management de 5 squads, développement de 5 produits SAAS BtoC. Livraison de la roadmap.","job5-1t":"Senior Product Manager.","job5-1d":"","job5-2t":"Program management.","job5-2d":" PMO unique. Mise en place d'une approche data-driven.","job6-1t":"Head of catalogue et merchandising.","job6-1d":"","job6-2t":"Product manager.","job6-2d":" Recherche, vente croisée, tunnel, fonctionnalités e-commerce. (6 mois)","job7-1t":"Produit 1 — E-commerce B2B.","job7-1d":" Vente d'un service : traduction humaine professionnelle.","job7-2t":"Produit 2 — SAAS B2C.","job7-2d":" Plateforme en ligne de traduction de documents et de sites web.","job8-1t":"CEO &amp; fondatrice.","job8-1d":" Création d'un produit physique innovant. Distribution internationale dans cinq pays. Financée par KIMA VENTURES."},
+      he: {"lang":"he","dir":"rtl","back":"חזרה ←","footer-date":"יוני 2026 :","footer-seeking":"מחפשת תפקיד CPO / VP Product / AI Product Lead","section-highlights":"Highlights","highlights-intro":"כל תגית מייצגת כישור מרכזי. לחצו להצגת הראיות על פני 13 שנות מנהיגות מוצר.","section-exp":"ניסיון","section-edu":"השכלה","section-lang":"שפות","job9-1t":"יועץ/ת ג'וניור.","job9-1d":" ניתוח שוק מעמיק, אסטרטגיה עסקית וניהול מידע ומשאבי ידע פנים-ארגוניים.","edu1-s":"Le Wagon פריז","edu1":"\"Web Design Express Certificate\"","edu2-s":"ESCP Europe פריז","edu2":"מאסטר מתמחה בפיתוח מוצר ויזמות","edu2-a":"נציגת הכיתה · זוכת פרס \"Best pitch\"","edu3-s":"INSEEC","edu3":"מוסמך מדעים באסטרטגיה עסקית","edu3-a":"לימודים מלאים באנגלית · התמחות: Data ומודיעין שוק","edu4-s":"Université Paris 1 Sorbonne","edu4":"תואר ראשון בכלכלה","languages":"אנגלית: שוטפת · צרפתית: שפת אם · עברית: בלמידה · איטלקית: אקדמית","job1-ctx":"מענה לביקוש נכנס מהרשת לסיוע לסטארטאפים בשלבים מוקדמים בעבודת המוצר הקשורה ל-AI.","job2-ctx":"תאגיד אמריקאי גדול, מוביל שוק. כפופה למנהל המוצר.","job3-ctx":"סטארטאפ חדש. כפופה למנכ\"ל.","job4-ctx":"סטארטאפ בצמיחה מהירה, 350 עובדים. כפופה למנכ\"ל.","job5-ctx":"סטארטאפ מבוסס בן 6 שנים. כפופה למנכ\"ל.","job6-ctx":"סטארטאפ שהושק על ידי תאגיד מדיה גדול. כפופה למנהל המוצר הראשי.","job7-ctx":"חברת 20 עובדים, מובילת שוק. כפופה למנכ\"ל.","job1-1t":"Product ops.","job1-1d":" כתיבת כמות גדולה של טיקטים, ניקוי Jira, ארגון מחדש של מפרטים לצוותי Dev ו-QA בזמן קצר.","job1-2t":"Product Audit.","job1-2d":" הערכת תהליך המוצר, הסרת חסמים, הכנה לאימוץ AI.","job1-3t":"מעבר ל-AI.","job1-3d":" ייעול המבנה, בחירת כלי AI לכל הארגון ואיחוד תהליך ה-AI.","job1-4t":"סיוע למייסדים — vibe coding.","job1-4d":" פיתוח הסטארטאפ בשימוש ב-Claude Code בלבד. הפעילות העיקרית שלי.","job1-5t":"סיוע למייסדים — כלי AI.","job1-5d":" עיצוב ופיתוח כלי AI מותאמים לצרכים הספציפיים של כל סטארטאפ.","job1-6t":"הפקת תוכן מבוסס AI, prompt engineering.","job1-6d":" בהתנדבות, משפחה וחברים.","job2-1t":"ראש מוצר, CMS.","job2-1d":" הובלת מפת הדרכים והביצוע. אחראית על התקשורת עם בעלי העניין האמריקאים.","job2-2t":"מומחית מוצר, שימור לקוחות.","job2-2d":" (6 חודשים)","job3-1t":"ראש מוצר, מנהלת המוצר הראשונה.","job3-1d":" בניית מחלקת המוצר: ארגון, תהליכים ומפת דרכים.","job4-1t":"ראש מוצר, פלטפורמות צרכנים.","job4-1d":" ניהול 5 צוותים, 5 מוצרי SAAS לצרכן. עמידה במפת הדרכים.","job5-1t":"מנהלת מוצר בכירה.","job5-1d":"","job5-2t":"ניהול תוכניות.","job5-2d":" PMO ראשון ויחיד. יישום גישה מבוססת נתונים.","job6-1t":"ראש קטלוג ומרצ'נדייזינג.","job6-1d":"","job6-2t":"מנהלת מוצר.","job6-2d":" חיפוש, מכירה צולבת, משפך, פיצ'רי מסחר אלקטרוני. (6 חודשים)","job7-1t":"מוצר 1 — E-commerce B2B.","job7-1d":" מכירת שירות: תרגום אנושי מקצועי.","job7-2t":"מוצר 2 — SAAS B2C.","job7-2d":" פלטפורמה מקוונת לתרגום מסמכים ואתרים.","job8-1t":"מנכ\"לית ומייסדת.","job8-1d":" יצירת מוצר פיזי חדשני. הפצה בינלאומית בחמש מדינות. בגיבוי KIMA VENTURES."}
+    };
+    const ids = ['footer-date', 'footer-seeking', 'section-highlights', 'highlights-intro', 'section-exp', 'section-edu', 'section-lang', 'job1-ctx', 'job2-ctx', 'job3-ctx', 'job4-ctx', 'job5-ctx', 'job6-ctx', 'job7-ctx', 'job1-1t', 'job1-1d', 'job1-2t', 'job1-2d', 'job1-3t', 'job1-3d', 'job1-4t', 'job1-4d', 'job1-5t', 'job1-5d', 'job1-6t', 'job1-6d', 'job2-1t', 'job2-1d', 'job2-2t', 'job2-2d', 'job3-1t', 'job3-1d', 'job4-1t', 'job4-1d', 'job5-1t', 'job5-1d', 'job5-2t', 'job5-2d', 'job6-1t', 'job6-1d', 'job6-2t', 'job6-2d', 'job7-1t', 'job7-1d', 'job7-2t', 'job7-2d', 'job8-1t', 'job8-1d', 'job9-1t', 'job9-1d', 'edu1-s', 'edu1', 'edu2-s', 'edu2', 'edu2-a', 'edu3-s', 'edu3', 'edu3-a', 'edu4-s', 'edu4', 'languages'];
+
+    function setLang(l) {
+      currentLang = l;
+      const d = trans[l];
+      document.documentElement.lang = d.lang;
+      document.documentElement.dir = d.dir;
+      document.getElementById('back').textContent = d.back;
+      ids.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = d[id] || ''; });
+      ['fr','en','he'].forEach(x => document.getElementById('btn-'+x).classList.remove('active'));
+      document.getElementById('btn-'+l).classList.add('active');
+      const isHe = l === 'he';
+      document.querySelectorAll('.job-context,.li-text,.edu-desc,.languages').forEach(el => el.style.fontSize = isHe ? '1rem' : '');
+      document.querySelectorAll('[data-tag]').forEach(el => {
+        const key = el.dataset.tag;
+        if (tagConfig[key]) el.textContent = tagConfig[key][l] || tagConfig[key].en;
+      });
+      if (activeTag) {
+        const cur = activeTag; activeTag = null; activateTag(cur);
+      }
+    }
+
+    // ── Filter view ────────────────────────────────────────────────────────────
+    function applyFilters() {
+      const on = id => { const el = document.getElementById('filter-' + id); return !el || el.checked; };
+
+      // Company-level elements
+      document.querySelectorAll('.job-dates').forEach(el =>
+        el.style.display = on('date') ? '' : 'none');
+      document.querySelectorAll('.job-company').forEach(el =>
+        el.style.display = on('company') ? '' : 'none');
+      document.querySelectorAll('.job-type').forEach(el =>
+        el.style.display = on('field') ? '' : 'none');
+      document.querySelectorAll('.job-context').forEach(el =>
+        el.style.display = on('activity') ? '' : 'none');
+
+      // Position rows (entire li)
+      document.querySelectorAll('.job-items > li').forEach(el =>
+        el.style.display = on('pos-held') ? '' : 'none');
+
+      // Title (strong) and description (span) within each row
+      document.querySelectorAll('.li-text strong').forEach(el =>
+        el.style.display = on('org-pos') ? 'inline' : 'none');
+      document.querySelectorAll('.li-text > span').forEach(el =>
+        el.style.display = on('pos-desc') ? 'inline' : 'none');
+
+      // Expandable detail items — match by label
+      const detailKeys = {
+        mission: 'Mission:', actions: 'Actions:',
+        impact:  'Impact:',  tools:   'Tools:',  note: 'Note:'
+      };
+      document.querySelectorAll('.li-detail ul li').forEach(li => {
+        const lbl = li.querySelector('strong')?.textContent;
+        for (const [key, text] of Object.entries(detailKeys)) {
+          if (lbl === text) { li.style.display = on(key) ? '' : 'none'; break; }
+        }
+      });
+    }
+
+    function filterAll(checked) {
+      document.querySelectorAll('.filter-grid input[type="checkbox"]').forEach(cb => cb.checked = checked);
+      applyFilters();
+    }
+
+    // Ensure all filter checkboxes are checked on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.filter-grid input[type="checkbox"]').forEach(cb => cb.checked = true);
+    });
+
+
+
+    function toggleFilterPanel() {
+      document.getElementById('filter-panel').classList.toggle('open');
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('#filter-panel input[type="checkbox"]').forEach(cb => cb.checked = true);
+      applyFilters();
+    });
+  </script>
+  <div class="filter-panel" id="filter-panel">
+    <div class="filter-panel-body">
+      <h3>Filter view</h3>
+      <p class="filter-panel-intro">Use the checkboxes to control the information displayed.</p>
+      <div class="filter-actions">
+        <button class="filter-btn" onclick="filterAll(true)">Show all</button>
+        <button class="filter-btn" onclick="filterAll(false)">Hide all</button>
+      </div>
+      <div class="filter-grid">
+          <label><input type="checkbox" id="filter-company" checked onchange="applyFilters()"> Company</label>
+          <label><input type="checkbox" id="filter-date" checked onchange="applyFilters()"> Date</label>
+          <label><input type="checkbox" id="filter-field" checked onchange="applyFilters()"> Company field</label>
+          <label><input type="checkbox" id="filter-activity" checked onchange="applyFilters()"> Company activity description</label>
+          <label><input type="checkbox" id="filter-org-pos" checked onchange="applyFilters()"> Position</label>
+          <label><input type="checkbox" id="filter-pos-desc" checked onchange="applyFilters()"> Position description</label>
+          <label><input type="checkbox" id="filter-mission" checked onchange="applyFilters()"> Position mission</label>
+          <label><input type="checkbox" id="filter-actions" checked onchange="applyFilters()"> Position actions</label>
+          <label><input type="checkbox" id="filter-impact" checked onchange="applyFilters()"> Position impact</label>
+          <label><input type="checkbox" id="filter-tools" checked onchange="applyFilters()"> Position tools</label>
+          <label><input type="checkbox" id="filter-note" checked onchange="applyFilters()"> Position note</label>
+      </div>
+    </div>
+    <div class="filter-panel-tab" onclick="toggleFilterPanel()">Filter view</div>
+  </div>
+</body>
+</html>

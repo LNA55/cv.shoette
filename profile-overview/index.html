@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Overview — Elena Hercot-Hagège</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      margin: 0;
+      background: #f9f9f7;
+      color: #222;
+    }
+    nav {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.5rem;
+      display: flex;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      direction: ltr;
+      z-index: 10;
+    }
+    nav button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #aaa;
+      padding: 0;
+      font-family: Georgia, serif;
+      font-size: 0.8rem;
+    }
+    nav button.active { color: #222; font-weight: bold; }
+    nav button:hover { color: #555; }
+    nav span { color: #ddd; }
+    main {
+      max-width: 720px;
+      margin: 5rem auto 4rem;
+      padding: 0 1rem;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .profile-text {
+      font-size: 0.92rem;
+      line-height: 1.85;
+      color: #444;
+    }
+    .profile-text p { margin: 0 0 1.1rem; }
+    a.back {
+      display: inline-block;
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      color: #aaa;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+    }
+    a.back:hover { color: #222; border-color: #222; }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <button onclick="setLang('fr')" id="btn-fr">FR</button>
+    <span>·</span>
+    <button onclick="setLang('en')" id="btn-en" class="active">EN</button>
+    <span>·</span>
+    <button onclick="setLang('he')" id="btn-he">עב</button>
+  </nav>
+
+  <main>
+    <h1 id="title">Profile Overview</h1>
+    <div class="profile-text" id="profile-text">
+      <p>Former entrepreneur with 12+ years of experience in digital product management. Proven success in transforming the company's vision in a product roadmap, and delivering it on time and on budget.</p>
+      <p>Experienced working in fast paced growing companies of all sizes on competitive markets. I have led digital product development for web, mobile applications and kiosk; for market place and simple e-commerce solutions; and for BtoB and BtoC SAAS.</p>
+    </div>
+    <a class="back" href="/" id="back">← back</a>
+  </main>
+
+  <script>
+    const translations = {
+      fr: {
+        lang: "fr", dir: "ltr",
+        title: "Aperçu du profil",
+        back: "← retour",
+        p1: "Ancienne entrepreneuse avec plus de 12 ans d'expérience en gestion de produits digitaux. Succès avéré dans la transformation de la vision d'entreprise en roadmap produit, livrée dans les délais et le budget impartis.",
+        p2: "Expérience dans des entreprises en forte croissance de toutes tailles sur des marchés compétitifs. J'ai conduit le développement de produits digitaux pour le web, les applications mobiles et les bornes interactives ; pour des marketplaces et solutions e-commerce ; ainsi que pour des SAAS BtoB et BtoC."
+      },
+      en: {
+        lang: "en", dir: "ltr",
+        title: "Profile Overview",
+        back: "← back",
+        p1: "Former entrepreneur with 12+ years of experience in digital product management. Proven success in transforming the company's vision in a product roadmap, and delivering it on time and on budget.",
+        p2: "Experienced working in fast paced growing companies of all sizes on competitive markets. I have led digital product development for web, mobile applications and kiosk; for market place and simple e-commerce solutions; and for BtoB and BtoC SAAS."
+      },
+      he: {
+        lang: "he", dir: "rtl",
+        title: "סקירת פרופיל",
+        back: "חזרה ←",
+        p1: "יזמת לשעבר עם למעלה מ־12 שנות ניסיון בניהול מוצרים דיגיטליים. הצלחה מוכחת בהמרת חזון החברה למפת דרכים של מוצר, תוך עמידה בלוחות זמנים ובתקציב.",
+        p2: "ניסיון בעבודה בחברות צומחות בקצב מהיר בכל הגדלים, בשווקים תחרותיים. הובלתי פיתוח מוצרים דיגיטליים לווב, אפליקציות מובייל וקיוסקים; לפתרונות מרקטפלייס ומסחר אלקטרוני; וכן ל-SAAS עסקי ולצרכן."
+      }
+    };
+
+    function setLang(l) {
+      const t = translations[l];
+      document.documentElement.lang = t.lang;
+      document.documentElement.dir = t.dir;
+      document.getElementById('title').textContent = t.title;
+      document.getElementById('back').textContent = t.back;
+      document.getElementById('profile-text').innerHTML = `<p>${t.p1}</p><p>${t.p2}</p>`;
+      ['fr','en','he'].forEach(x => document.getElementById('btn-'+x).classList.remove('active'));
+      document.getElementById('btn-'+l).classList.add('active');
+      const isHe = l === 'he';
+      document.getElementById('title').style.fontSize = isHe ? '1.7rem' : '';
+      document.getElementById('profile-text').style.fontSize = isHe ? '1.05rem' : '';
+    }
+  </script>
+
+</body>
+</html>

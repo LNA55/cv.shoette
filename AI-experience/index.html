@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expérience IA — Elena Hercot-Hagège</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      margin: 0;
+      background: #f9f9f7;
+      color: #222;
+    }
+    nav {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.5rem;
+      display: flex;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      direction: ltr;
+    }
+    nav button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #aaa;
+      padding: 0;
+      font-family: Georgia, serif;
+      font-size: 0.8rem;
+    }
+    nav button.active { color: #222; font-weight: bold; }
+    nav button:hover { color: #555; }
+    nav span { color: #ddd; }
+    main {
+      max-width: 640px;
+      margin: 5rem auto 3rem;
+      padding: 0 1.5rem;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    p {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: #444;
+      margin: 0 0 1rem;
+    }
+    a.back {
+      display: inline-block;
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      color: #aaa;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+    }
+    a.back:hover { color: #222; border-color: #222; }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <button onclick="setLang('fr')" id="btn-fr" class="active">FR</button>
+    <span>·</span>
+    <button onclick="setLang('en')" id="btn-en">EN</button>
+    <span>·</span>
+    <button onclick="setLang('he')" id="btn-he">עב</button>
+  </nav>
+
+  <main>
+    <h1 id="title">Expérience IA</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <a class="back" href="/" id="back">← retour</a>
+  </main>
+
+  <script>
+    const translations = {
+      fr: { lang: "fr", dir: "ltr", title: "Expérience IA", back: "← retour" },
+      en: { lang: "en", dir: "ltr", title: "AI Experience", back: "← back" },
+      he: { lang: "he", dir: "rtl", title: "ניסיון בבינה מלאכותית", back: "חזרה ←" }
+    };
+    function setLang(l) {
+      const t = translations[l];
+      document.documentElement.lang = t.lang;
+      document.documentElement.dir = t.dir;
+      document.getElementById('title').textContent = t.title;
+      document.getElementById('back').textContent = t.back;
+      ['fr','en','he'].forEach(x => document.getElementById('btn-'+x).classList.remove('active'));
+      document.getElementById('btn-'+l).classList.add('active');
+      const isHe = l === 'he';
+      document.getElementById('title').style.fontSize = isHe ? '1.7rem' : '';
+    }
+  </script>
+
+</body>
+</html>
