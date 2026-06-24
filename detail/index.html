@@ -237,6 +237,16 @@
     .filter-panel .filter-grid label { font-size: 0.8rem; }
     .todo-note { color: #1a4fcc !important; background: #fff3a0; display: inline-block; padding: 0.1rem 0.4rem; font-weight: bold; letter-spacing: 0.03em; margin-top: 0.4rem; }
     .todo-extra { color: #1a4fcc; background: #fff3a0; display: inline-block; padding: 0.1rem 0.4rem; margin-top: 0.3rem; font-style: italic; }
+    .li-detail ul li.gen, .li-detail ul li.gen strong, .li-detail ul li .gen { color: #7c3aed; }
+    .li-detail ul li.mission-lead { color: #111; }
+    .li-detail ul li.actions-list ul { list-style: disc; padding-left: 1.1rem; margin: 0.1rem 0; }
+    .li-detail ul li.actions-list ul li { color: #666; line-height: 1.7; margin: 0; padding: 0; display: list-item; }
+    .li-detail ul li.actions-list ul li.gen { color: #7c3aed; }
+    .li-detail ul li.mission-lead strong { color: #111; }
+    .li-detail ul li.blk, .li-detail ul li.blk strong { color: #111; }
+    .li-detail ul li a { color: var(--bordeaux); text-decoration: none; border-bottom: 1px solid var(--bordeaux-pale); }
+    .li-detail ul li a:hover { border-color: var(--bordeaux); }
+    .li-detail ul li.actions-list ul li.sub { margin-left: 1.4rem; }
   </style>
 </head>
 <body>
@@ -301,11 +311,11 @@
               <span class="li-text"><strong id="job1-1t">Product ops.</strong><span id="job1-1d"> Draft a large volume of tickets, clean Jira, reorganize specifications for the Dev and QA team in an exceptionally short time frame.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Rapidly restructure Jira backlog and product specs to unblock a development team stalled by documentation debt.</li>
-              <li><strong>Actions:</strong> Wrote 40+ tickets from scratch; reorganized programs, epics and user stories; standardized spec format compatible with AI coding tools; updated and cleaned jira tickets, cleaned outdated backlog; set up QA checklist templates, wireframes checklist template, and PRD ticket framework.</li>
-              <li><strong>Impact:</strong> Dev team unblocked. What was in the founder's mind is now written, no more bottle neck on them. Edge scenarios and missing requirements have been spotted and addressed before the dev team needed the information.</li>
-              <li><strong>Tools:</strong> ChatGPT for simple rephrase, and to challenge the completion of the first template-tickets. Once the first core tickets done, I "discussed" the desired features with Claude Code, which scaled the process and produced the tickets. I verified them with Claude code, Claude, Chat GPT and manually.</li>
-              <li><strong>Note:</strong> at the time of this mission, I did not trust AI enought to no verify all the tickets manually. The mission was executed faster with AI then if I had to do it all manually, but end-to-end the time difference was not huge. However, the process in place enables the company to scale easily, in an effective way, with little Product resources (probably one senior PM only).</li>
+              <li class="gen"><strong>Mission:</strong> Rapidly restructure Jira backlog and product specs to unblock a development team stalled by documentation debt.</li>
+              <li class="blk"><strong>Actions:</strong> Wrote 40+ tickets from scratch; reorganized programs, epics and user stories; standardized spec format compatible with AI coding tools; updated and cleaned jira tickets, cleaned outdated backlog; set up QA checklist templates, wireframes checklist template, and PRD ticket framework.</li>
+              <li class="blk"><strong>Impact:</strong> Dev team unblocked. What was in the founder's mind is now written, no more bottle neck on them. Edge scenarios and missing requirements have been spotted and addressed before the dev team needed the information.</li>
+              <li class="blk"><strong>Tools:</strong> ChatGPT for simple rephrase, and to challenge the completion of the first template-tickets. Once the first core tickets done, I "discussed" the desired features with Claude Code, which scaled the process and produced the tickets. I verified them with Claude code, Claude, Chat GPT and manually.</li>
+              <li class="blk"><strong>Note:</strong> at the time of this mission, I did not trust AI enought to no verify all the tickets manually. The mission was executed faster with AI then if I had to do it all manually, but end-to-end the time difference was not huge. However, the process in place enables the company to scale easily, in an effective way, with little Product resources (probably one senior PM only).</li>
               <li class="todo-note">ELENA TO COMPLETE THIS MISSION</li>
               <li class="todo-extra">MSIE Connect legacy Portfolio</li>
             </ul></div>
@@ -316,11 +326,11 @@
               <span class="li-text"><strong id="job1-2t">Product Audit.</strong><span id="job1-2d"> Assess the logic and solidity of a company's product process, remove blockers, and prepare the team to introduce AI.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Diagnose and rebuild a startup's product process ahead of an AI transformation initiative.</li>
-              <li><strong>Actions:</strong> Interviewed PMs and engineering leads; mapped the release pipeline; identified [N] critical blockers; delivered written audit with prioritized action plan in 2 weeks.</li>
-              <li><strong>Impact:</strong> Release cycle shortened by [N]%; team ready to onboard AI coding tools within the following sprint.</li>
-              <li><strong>Tools:</strong> Miro, Notion, Claude</li>
-              <li><strong>Note:</strong> Process audits for small teams (5–25 people) require a balance between rigour and pragmatism — the goal is to unlock momentum, not create bureaucracy.</li>
+              <li class="gen"><strong>Mission:</strong> Diagnose and rebuild a startup's product process ahead of an AI transformation initiative.</li>
+              <li class="gen"><strong>Actions:</strong> Interviewed PMs and engineering leads; mapped the release pipeline; identified [N] critical blockers; delivered written audit with prioritized action plan in 2 weeks.</li>
+              <li class="gen"><strong>Impact:</strong> Release cycle shortened by [N]%; team ready to onboard AI coding tools within the following sprint.</li>
+              <li class="gen"><strong>Tools:</strong> Miro, Notion, Claude</li>
+              <li class="gen"><strong>Note:</strong> Process audits for small teams (5–25 people) require a balance between rigour and pragmatism — the goal is to unlock momentum, not create bureaucracy.</li>
               <li class="todo-note">ELENA TO COMPLETE THIS MISSION</li>
             </ul></div>
           </li>
@@ -330,11 +340,11 @@
               <span class="li-text"><strong id="job1-3t">Transition to AI.</strong><span id="job1-3d"> Rationalize team structure, test and choose AI tools for the entire org, and unify the AI process across all PMs.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Unify the AI toolchain and process across a product organization fragmented by individual tool choices.</li>
-              <li><strong>Actions:</strong> Benchmarked [N]+ AI tools across PM workflows; ran 2-week pilots with each team; wrote the company's first AI Product Playbook.</li>
-              <li><strong>Impact:</strong> Reduced tool fragmentation from [N] stacks to 2 unified tools; onboarding time for new PMs cut by [N]%.</li>
-              <li><strong>Tools:</strong> Claude, ChatGPT, Copilot, Gemini, Linear</li>
-              <li><strong>Note:</strong> The biggest barrier to AI adoption is not tool capability — it's agreeing on a shared process. This is a change management challenge as much as a technical one.</li>
+              <li class="gen"><strong>Mission:</strong> Unify the AI toolchain and process across a product organization fragmented by individual tool choices.</li>
+              <li class="gen"><strong>Actions:</strong> Benchmarked [N]+ AI tools across PM workflows; ran 2-week pilots with each team; wrote the company's first AI Product Playbook.</li>
+              <li class="gen"><strong>Impact:</strong> Reduced tool fragmentation from [N] stacks to 2 unified tools; onboarding time for new PMs cut by [N]%.</li>
+              <li class="gen"><strong>Tools:</strong> Claude, ChatGPT, Copilot, Gemini, Linear</li>
+              <li class="gen"><strong>Note:</strong> The biggest barrier to AI adoption is not tool capability — it's agreeing on a shared process. This is a change management challenge as much as a technical one.</li>
               <li class="todo-note">ELENA TO COMPLETE THIS MISSION</li>
               <li class="todo-extra">find a project</li>
             </ul></div>
@@ -345,11 +355,11 @@
               <span class="li-text"><strong id="job1-4t">Assist Founders — vibe coding.</strong><span id="job1-4d"> Development of a startup using only Claude Code. Often no CTO in the team. My main activity.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Enable non-technical founders to ship working products without a CTO or dev team, using Claude Code as the sole development tool.</li>
-              <li><strong>Actions:</strong> Defined MVP scope; structured Claude Code prompts; iterated through build-measure-learn cycles; managed technical debt and architecture decisions alongside each founder.</li>
-              <li><strong>Impact:</strong> [N] startups shipped functional MVPs in [N]–[N] weeks; one raised a pre-seed round on the basis of the working prototype.</li>
-              <li><strong>Tools:</strong> Claude Code, Claude Design, Vercel, Supabase</li>
-              <li><strong>Note:</strong> Vibe coding requires strong product judgment (tight scope), technical intuition (catch AI errors), and founder coaching (manage expectations).</li>
+              <li class="gen"><strong>Mission:</strong> Enable non-technical founders to ship working products without a CTO or dev team, using Claude Code as the sole development tool.</li>
+              <li class="gen"><strong>Actions:</strong> Defined MVP scope; structured Claude Code prompts; iterated through build-measure-learn cycles; managed technical debt and architecture decisions alongside each founder.</li>
+              <li class="gen"><strong>Impact:</strong> [N] startups shipped functional MVPs in [N]–[N] weeks; one raised a pre-seed round on the basis of the working prototype.</li>
+              <li class="gen"><strong>Tools:</strong> Claude Code, Claude Design, Vercel, Supabase</li>
+              <li class="gen"><strong>Note:</strong> Vibe coding requires strong product judgment (tight scope), technical intuition (catch AI errors), and founder coaching (manage expectations).</li>
               <li class="todo-note">ELENA TO COMPLETE THIS MISSION</li>
               <li class="todo-extra">My Health Journal App, Detailed CV, Israel History, Dan the Hazan, Saint Michel Valetta</li>
             </ul></div>
@@ -360,11 +370,11 @@
               <span class="li-text"><strong id="job1-5t">Assist Founders — AI tools.</strong><span id="job1-5d"> Design and development of AI tools tailored to each startup's specific operational or product problems.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Design and build custom AI tools solving specific problems for early-stage startups.</li>
-              <li><strong>Actions:</strong> Defined use case and success criteria; selected models and architecture; supervised the build; validated outputs against real business data.</li>
-              <li><strong>Impact:</strong> [N] custom AI tools delivered in production; one replaced a manual process consuming [N] hours/week of senior team time.</li>
-              <li><strong>Tools:</strong> Claude API, Claude Code, OpenAI API, Supabase</li>
-              <li><strong>Note:</strong> The key challenge is scoping. Most founders overestimate what an AI tool needs to do on day one.</li>
+              <li class="gen"><strong>Mission:</strong> Design and build custom AI tools solving specific problems for early-stage startups.</li>
+              <li class="gen"><strong>Actions:</strong> Defined use case and success criteria; selected models and architecture; supervised the build; validated outputs against real business data.</li>
+              <li class="gen"><strong>Impact:</strong> [N] custom AI tools delivered in production; one replaced a manual process consuming [N] hours/week of senior team time.</li>
+              <li class="gen"><strong>Tools:</strong> Claude API, Claude Code, OpenAI API, Supabase</li>
+              <li class="gen"><strong>Note:</strong> The key challenge is scoping. Most founders overestimate what an AI tool needs to do on day one.</li>
               <li class="todo-note">ELENA TO COMPLETE THIS MISSION</li>
               <li class="todo-extra">News parser, My Health Journal</li>
             </ul></div>
@@ -375,7 +385,7 @@
               <span class="li-text"><strong id="job1-6t">Deliver AI-generated content, prompt engineering.</strong><span id="job1-6d"> Pro bono, family and friends.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</li>
+              <li class="gen">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</li>
               <li class="todo-note">ELENA TO COMPLETE THIS MISSION</li>
             </ul></div>
           </li>
@@ -396,11 +406,27 @@
               <span class="li-text"><strong id="job2-1t">Head of Product, CMS.</strong><span id="job2-1d"> Drove roadmap and execution. In charge of communication with US stakeholders.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Own the CMS product roadmap for Shutterfly's core e-commerce platform — a system critical to publishing thousands of seasonal products across all print categories.</li>
-              <li><strong>Actions:</strong> Defined and drove the 3-year CMS roadmap; led cross-functional squad ([N] engineers, [N] designers, [N] analyst); aligned quarterly delivery with US Director of Product; managed migration from legacy to headless CMS; coordinated releases across [N] business units.</li>
-              <li><strong>Impact:</strong> CMS migration delivered on time and on budget; content publishing speed improved by [N]%; marketing team became self-service, reducing product dependency for content updates.</li>
-              <li><strong>Tools:</strong> Jira, Confluence, Mixpanel, Adobe Analytics, Figma</li>
-              <li><strong>Note:</strong> Running a team from Israel in a large US corporation required exceptional stakeholder communication and the ability to navigate matrix organization dynamics.</li>
+              <li class="mission-lead"><strong>Mission:</strong> The CMS powers the website's homepage, category pages, and hundreds of content-pages. I lead the CMS department: transformed the objectives given by the C-level into a detailed roadmap. Decided on the department organization, process and lead the team towards execution within time and budget.</li>
+              <li class="actions-list"><ul>
+                <li>Defined the roadmap.</li>
+                <li>Organized and decided on priorities in the backlog.</li>
+                <li>Shaped and sometimes drafted the product requirements.</li>
+                <li>Created and oversaw the execution of a state-of-the-art documentation and demo pages, for stakeholders benefit.</li>
+                <li>Set up process for effective and happy collaboration with the design team, and "our main client" the ecommerce team.</li>
+                <li>Led the implementation and the usage of the new Design System in the CMS code, and CMS-team's usage.</li>
+                <li>Became the face of CMS towards all stakeholders — customer care, ecommerce, merchandising, etc.</li>
+                <li>Held CMS steering committees.</li>
+                <li>Worked in Agile. Led a Product Manager, a team of 6 to 25 developers (depending on sprints and needs) and 6 QA. Worked with the Head of Data, two shared analysts, 6 shared designers, and creatives.</li>
+              </ul></li>
+              <li class="mission-lead">After three years leading the CMS, I was selected for the cross-functional team driving the company's flagship website replatforming program.</li>
+              <li class="actions-list"><ul>
+                <li>Led the CMS RFP, a 6 months project where we teamed up with procurement to select the new CMS tool.</li>
+                <li>Managed the migration from legacy to headless CMS.</li>
+                <li>Not Agile this time: managed an offshore team in India of 20+ developers, 2 product managers and several PMOs.</li>
+                <li>Owned internal communication within the replatforming team.</li>
+              </ul></li>
+              <li class="blk"><strong>Impact:</strong> Established transparent, structured and efficient communication between the CMS team and all its stakeholders. Empowered the e-commerce team to self-serve, reducing their dependency on Product for content updates.</li>
+              <li class="blk"><strong>Tools:</strong> Jira, Confluence, Mixpanel, Adobe Analytics, Figma</li>
             </ul></div>
           </li>
           <li data-tags="data crossfunc monitoring" data-proof-monitoring="Post-purchase journey tracked via Adobe Analytics. [N] friction points identified, impact measured over [N] quarters." data-proof-data="Adobe Analytics + Braze-driven analysis of post-purchase journeys. Identified [N] key friction points — contributed to [N]% improvement in repeat purchase rate over [N] quarters." data-proof-crossfunc="Partnered with CRM, marketing and data science on retention touchpoints. Ran A/B tests on re-engagement flows. Translated behavioral data into roadmap-ready findings.">
@@ -409,11 +435,21 @@
               <span class="li-text"><strong id="job2-2t">Product Specialist, E-commerce Retention.</strong><span id="job2-2d"> (6 months)</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Understand and improve repeat purchase rate across Shutterfly's core e-commerce funnel.</li>
-              <li><strong>Actions:</strong> Analyzed post-purchase journeys via Adobe Analytics; partnered with CRM and marketing on loyalty touchpoints; ran A/B tests on re-engagement flows; identified [N] key friction points.</li>
-              <li><strong>Impact:</strong> Contributed to [N]% improvement in repeat purchase rate over [N] quarters.</li>
-              <li><strong>Tools:</strong> Adobe Analytics, Optimizely, Braze, Jira</li>
-              <li><strong>Note:</strong> 6-month deep dive that built expertise in retention mechanics at scale — the foundation for all subsequent e-commerce product work.</li>
+              <li class="blk"><strong>Mission:</strong> Understand and improve repeat purchase rate across Shutterfly's core e-commerce funnel.</li>
+              <li class="blk"><strong>Actions:</strong> Ran a hands-on 6-month deep dive into user data, end-to-end and across all platforms (website and mobile apps). Built analytics dashboards to map the full user flow and study retention mechanics at scale. Identified friction points, fixed bugs, and specified features to remove them.</li>
+              <li class="blk"><strong>Impact:</strong> Contributed, over three quarters, to year-over-year improvements in conversion rate, repeat purchase rate, average order value, and customer lifetime value (LTV).</li>
+              <li class="blk"><strong>Tools:</strong> MixPanel for the mobile applications (an iOS and an Android app), and Adobe Analytics for the website. Plus FullStory, Tableau, Confluence and Jira.</li>
+            </ul></div>
+          </li>
+          <li data-tags="execution monitoring" data-proof-execution="Final manual end-to-end verification of the iOS app before each release — last quality gate before shipping." data-proof-monitoring="Caught minor bugs that slipped through the QA team's process, before they reached production.">
+            <div class="li-toggle" onclick="toggleDetail(this)">
+              <span class="bullet">+</span>
+              <span class="li-text"><strong id="job2-3t">Release Manager, iOS Mobile App.</strong><span id="job2-3d"></span></span>
+            </div>
+            <div class="li-detail"><ul>
+              <li class="blk"><strong>Mission:</strong> PM in charge of the manual verification of the app end-to-end before each release.</li>
+              <li class="blk"><strong>Impact:</strong> Caught a few minor bugs missed by the QA team.</li>
+              <li class="blk"><strong>Skill:</strong> Patient, methodic, reliable.</li>
             </ul></div>
           </li>
         </ul>
@@ -433,11 +469,15 @@
               <span class="li-text"><strong id="job3-1t">Head of Product, First PM.</strong><span id="job3-1d"> Built the product department: organization, processes and roadmap.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Build the product function from zero at a new SAAS startup — no processes, no culture, no PM team.</li>
-              <li><strong>Actions:</strong> Hired and onboarded [N] PMs; designed all agile rituals; created the first product roadmap aligned to investor milestones; built the engineering/business bridge; defined product vision with CEO.</li>
-              <li><strong>Impact:</strong> Product organization operational in 3 months; company raised next funding round with product roadmap at the center of the narrative.</li>
-              <li><strong>Tools:</strong> Jira, Notion, Mixpanel</li>
-              <li><strong>Note:</strong> Being the first PM is simultaneously IC, manager, and culture-setter. You build the vocabulary and the standards everything else is built on.</li>
+              <li class="blk"><strong>Mission:</strong> Build the product function from scratch at a new SAAS startup.</li>
+              <li class="actions-list"><ul>
+                <li>Defined the product vision with the CEO and built the product.</li>
+                <li>Hired and onboarded 1 PM.</li>
+                <li>Designed all agile rituals.</li>
+                <li>Created the first product roadmap, aligned to investor milestones.</li>
+                <li>Launched and structured the work between product, engineering and business units.</li>
+              </ul></li>
+              <li class="blk"><strong>Impact:</strong> Product organization operational in 1 week, could be run by a junior PM; company succeeded in presenting an MVP to investors under two weeks, and the final product v1 after a month — which was the set goal.</li>
             </ul></div>
           </li>
         </ul>
@@ -457,11 +497,11 @@
               <span class="li-text"><strong id="job4-1t">Head of Product, Consumer Platforms.</strong><span id="job4-1d"> Lead 5 squads, developed 5 BtoC SAAS products (incl. kiosk). Delivered the roadmap.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Lead all consumer-facing products for Wynd, an omnichannel SAAS solution serving major French retailers.</li>
-              <li><strong>Actions:</strong> Managed [N] squads ([N]+ people); owned roadmap for [N] BtoC products (mobile, web, kiosk, loyalty, staff app); aligned with CEO; coordinated cross-product dependencies.</li>
-              <li><strong>Impact:</strong> All [N] products delivered on the committed roadmap. Kiosk launched in [N]+ retail locations. Team scaled from [N] to [N] people in 6 months.</li>
-              <li><strong>Tools:</strong> Jira, Confluence, Mixpanel, Figma</li>
-              <li><strong>Note:</strong> Managing [N] concurrent product lines is a forcing function for systems thinking — you build the right team and the right process, or nothing ships.</li>
+              <li class="gen"><strong>Mission:</strong> Lead all consumer-facing products for Wynd, an omnichannel SAAS solution serving major French retailers.</li>
+              <li class="gen"><strong>Actions:</strong> Managed [N] squads ([N]+ people); owned roadmap for [N] BtoC products (mobile, web, kiosk, loyalty, staff app); aligned with CEO; coordinated cross-product dependencies.</li>
+              <li class="gen"><strong>Impact:</strong> All [N] products delivered on the committed roadmap. Kiosk launched in [N]+ retail locations. Team scaled from [N] to [N] people in 6 months.</li>
+              <li class="gen"><strong>Tools:</strong> Jira, Confluence, Mixpanel, Figma</li>
+              <li class="gen"><strong>Note:</strong> Managing [N] concurrent product lines is a forcing function for systems thinking — you build the right team and the right process, or nothing ships.</li>
             </ul></div>
           </li>
         </ul>
@@ -471,9 +511,9 @@
         <div class="job-header">
           <span class="job-dates">2017</span>
           <span class="job-company">Lima Technologies</span>
-          <span class="job-type">SAAS BtoC personal cloud</span>
+          <span class="job-type">Personal NAS — BtoC cloud storage</span>
         </div>
-        <p class="job-context" id="job5-ctx">6-year-old founded startup. Reported to CEO.</p>
+        <p class="job-context" id="job5-ctx">A personal cloud storage service — like Dropbox, but with encrypted protocols and your files stored on a physical, secured disk attached to your box (hardware). A "star" tech startup, backed by a famous European VC, fast growing. Reported to CEO.</p>
         <ul class="job-items">
           <li data-tags="strategy data monitoring" data-proof-strategy="Owned mobile + web roadmap. Mixpanel-driven prioritization. Shipped [N] major features in 12 months — [N]% improvement in MAU retention. Contributed to the product pivot that extended the company's runway." data-proof-data="Feature prioritization 100% driven by Mixpanel retention data. [N]% improvement in monthly active user retention over 12 months.">
             <div class="li-toggle" onclick="toggleDetail(this)">
@@ -481,24 +521,29 @@
               <span class="li-text"><strong id="job5-1t">Senior Product Manager.</strong><span id="job5-1d"></span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Drive user-facing feature development for a BtoC personal cloud product competing in a market disrupted by Dropbox and Google Drive.</li>
-              <li><strong>Actions:</strong> Owned mobile and web roadmap; ran user research; prioritized based on Mixpanel retention data; collaborated closely with CEO and CTO.</li>
-              <li><strong>Impact:</strong> Shipped [N] major features in 12 months; improved MAU retention by [N]%; contributed to the product pivot that extended the company's runway.</li>
-              <li><strong>Tools:</strong> Jira, Mixpanel, Google Analytics, UserTesting</li>
-              <li><strong>Note:</strong> Working in a mature startup competing against tech giants sharpens instinct for differentiation — you must win on experience when you cannot win on reach.</li>
+              <li class="blk"><strong>Mission:</strong> Came in to manage the two new hires — a product manager/developer and a product design/developer, set up the Product team, processes, roadmap, prioritisation, and be hands-on on a complex foundation feature.</li>
+              <li class="actions-list"><ul>
+                <li>Hands-on product work on the file management system: file status and overlays.</li>
+                <li>Drove the features and UI of the SaaS, across both desktop and mobile apps.</li>
+                <li>Defined the short-term product roadmap — deliberately no long-term plan at this stage.</li>
+                <li>Set feasible objectives and consistently delivered on them.</li>
+                <li>Improved file management.</li>
+                <li>Partnered with Customer Care to significantly reduce the volume of daily complaints and support requests.</li>
+                <li>Introduced a user-feedback channel through the online support site.</li>
+                <li>Improved data tagging.</li>
+              </ul></li>
+              <li class="blk"><strong>Impact:</strong> Delivered every committed objective on time; reduced the daily support workload; and strengthened the product's foundations through better file management, a new user-feedback loop, and cleaner data tagging.</li>
             </ul></div>
           </li>
           <li data-tags="leadership orgs data execution monitoring" data-proof-execution="Planning surprises reduced by [N]%. On-time delivery became the norm, not the exception." data-proof-monitoring="CEO-level dashboards: sprint velocity, cross-team dependencies, roadmap health — all real-time." data-proof-leadership="Designed and owned the cross-team delivery process as sole PMO — reporting directly to CEO. Planning surprises reduced by [N]%. Leadership gained real-time visibility for the first time." data-proof-orgs="Implemented OKRs, sprint velocity tracking, dependency mapping and quarterly roadmap reviews as sole PMO. Process adopted company-wide. Planning surprises down [N]%." data-proof-data="Built CEO-level dashboards tracking sprint velocity, cross-team dependencies and roadmap health in real time. [N]% reduction in planning surprises.">
             <div class="li-toggle" onclick="toggleDetail(this)">
               <span class="bullet">+</span>
-              <span class="li-text"><strong id="job5-2t">Program Management.</strong><span id="job5-2d"> First and only PMO. Implemented a data-driven delivery approach.</span></span>
+              <span class="li-text"><strong id="job5-2t">Program Management.</strong><span id="job5-2d"> First and only PMO. Unblock the delivery with a better management of the tech dependencies.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Introduce predictability and data-driven decision-making as Lima's first and only PMO.</li>
-              <li><strong>Actions:</strong> Implemented OKR framework; built delivery dashboards for the CEO; mapped cross-team dependencies; introduced sprint velocity tracking; designed quarterly roadmap review process.</li>
-              <li><strong>Impact:</strong> Planning surprises reduced by [N]%; CEO gained real-time visibility into product health; process adopted as standard across all teams.</li>
-              <li><strong>Tools:</strong> Jira, Google Sheets, Mixpanel</li>
-              <li><strong>Note:</strong> Being the only PMO at a startup means building the system, running it, and selling it to people who think process is overhead.</li>
+              <li class="blk"><strong>Actions:</strong> Conducted a series of one-to-one meetings with each of the 11 developers to understand what they were working on. There was no product team at this time, the projects were not documented. We spotted the dependencies and blockers. I created a massive Gantt chart to provide transparency and answers to everyone. We reorganized the order of priorities of the projects, not based on the customer, the importance of the features from a product standpoint, or the business needs, but based on the needs of the technology. In less than a month, we addressed and solved the blockers and started delivering again.</li>
+              <li class="blk"><strong>Impact:</strong> Unblocked the delivery with a better management of the tech dependencies.</li>
+              <li class="blk"><strong>Tool:</strong> Gantt chart.</li>
             </ul></div>
           </li>
         </ul>
@@ -508,9 +553,10 @@
         <div class="job-header">
           <span class="job-dates">2015–2017</span>
           <span class="job-company">Doctipharma</span>
-          <span class="job-type">BtoC marketplace</span>
+          <span class="job-type">BtoC marketplace + BtoB platform for pharmacists</span>
         </div>
-        <p class="job-context" id="job6-ctx">Startup launched by a market-leader media corporation. Reported to CPO.</p>
+        <p class="job-context" id="job6-ctx">Doctipharma is a startup launched within the market-leader media corporation Lagardère. It is a sister company to Doctissimo (same office, shared resources).</p>
+        <p class="job-context" id="job6-ctx2">Reported to CPO then to CEO. Used a shared team of 6 developers and QA. Managed 2 product managers.</p>
         <ul class="job-items">
           <li data-tags="strategy orgs" data-proof-strategy="Defined catalog taxonomy and data model from zero. Grew from 0 to [N],000+ SKUs in 18 months — became the company's primary competitive differentiator, enabling expansion to [N]+ pharmacy partners." data-proof-orgs="Built the catalog operations team and process from scratch. 0 to [N],000+ SKUs in 18 months. In a marketplace, the catalog IS the product.">
             <div class="li-toggle" onclick="toggleDetail(this)">
@@ -518,11 +564,15 @@
               <span class="li-text"><strong id="job6-1t">Head of Catalog and Merchandising.</strong><span id="job6-1d"></span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Build the product catalog from scratch for a BtoC pharmacy marketplace — the core asset enabling the business model.</li>
-              <li><strong>Actions:</strong> Defined catalog taxonomy and data model; led catalog ops team; set data quality standards; built merchandising rules; grew catalog from 0 to [N],000+ SKUs in 18 months; negotiated data feeds with pharmacy chains.</li>
-              <li><strong>Impact:</strong> Catalog became the company's primary competitive differentiator; category coverage enabled expansion to [N]+ pharmacy partners.</li>
-              <li><strong>Tools:</strong> Internal PIM, Google Analytics, Excel, Jira</li>
-              <li><strong>Note:</strong> In a marketplace, the catalog IS the product — its quality directly determines conversion, trust, and growth.</li>
+              <li class="blk"><strong>Mission:</strong> lalala</li>
+              <li class="actions-list"><ul>
+                <li>Cleaned up (−15%) and expanded (+50%) the product catalog in the PIM (Akeneo).</li>
+                <li>Qualified the catalog database. (Excel)</li>
+                <li>Merchandising: created a "top products" section at the top of catalog (thumbnail) pages, driving a lift in conversion.</li>
+                <li>Managed the position of each product and each marketplace offer on content and category pages — using an internal tool based on the product's score.</li>
+                <li>Improved the content on info, category and catalog pages, to give users clear, important information to choose the right product — among 13K products in the catalog.</li>
+                <li>Tools: PIM Akeneo, Jira, Confluence, Kibana. Agile Scrum. Mockups and low-fidelity wireframes.</li>
+              </ul></li>
             </ul></div>
           </li>
           <li data-tags="strategy data crossfunc monitoring" data-proof-strategy="Led search, recommendation and funnel feature discovery — from user research to shipped feature. Every initiative started with a defined hypothesis and success metric." data-proof-monitoring="A/B tested every funnel improvement. +[N]% search conversion tracked and validated before full rollout." data-proof-data="+[N]% search conversion. Increased average basket size via cross-sell launch. Reduced cart drop-off. All validated by A/B testing before full rollout." data-proof-crossfunc="Coordinated data science (search algorithms), UX, and engineering. Defined success metrics before building. Shipped only what the data confirmed.">
@@ -531,11 +581,15 @@
               <span class="li-text"><strong id="job6-2t">Product Manager.</strong><span id="job6-2d"> Search, cross-sell, funnel, e-commerce features. (6 months)</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Improve e-commerce KPIs (search, conversion, cross-sell) for a marketplace with a complex catalog.</li>
-              <li><strong>Actions:</strong> Led discovery for search and recommendation features; A/B tested funnel steps; worked with data team on cross-sell algorithms; defined UX improvements for category and product pages.</li>
-              <li><strong>Impact:</strong> +[N]% search conversion; increased average basket size; reduced cart drop-off.</li>
-              <li><strong>Tools:</strong> Google Analytics, Optimizely, Jira, SQL</li>
-              <li><strong>Note:</strong> 6 months of focused e-commerce product work — the fastest way to develop intuition for conversion optimization.</li>
+              <li class="blk"><strong>Mission:</strong> Improve e-commerce KPIs (search, conversion, cross-sell) for a marketplace with a complex catalog.</li>
+              <li class="actions-list"><ul>
+                <li>Modified UX &amp; UI with A/B testing to improve conversion. (Sketch, Kameleon, AB Tasty)</li>
+                <li>Ran a deep study of user baskets and purchases. Tuned the parameters of our cross-sell tool (Nuukik) to improve recommendation relevance and basket size — +20% items per purchase through cross-sell and merchandising.</li>
+                <li>Worked with the tech team on the smart cart algorithm.</li>
+                <li>Added filters and improved search and the site tree to optimize SEO and UX. (Sol-R, Elastic, Doofinder)</li>
+                <li>Improved SEO-friendly content. (Yooda Insight, Bolt)</li>
+                <li>Product evolution of the BtoB platform for sellers in our marketplace (pharmacies). Worked both on the Mirakl platform and on the new internal one — built to replace the Mirakl one.</li>
+              </ul></li>
             </ul></div>
           </li>
         </ul>
@@ -555,11 +609,11 @@
               <span class="li-text"><strong id="job7-1t">Product 1 — B2B E-commerce.</strong><span id="job7-1d"> Selling a service: professional human translation.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Improve the B2B e-commerce platform selling professional human translation services to business clients.</li>
-              <li><strong>Actions:</strong> Designed wireframes and mockups; wrote the product requirements; managed the relationship with an external web agency (vendor) building the platform; coordinated delivery, reviews and QA throughout.</li>
-              <li><strong>Impact:</strong> Delivered an improved online platform; smoother ordering and quoting experience for business clients. [N]% improvement in [conversion / order completion].</li>
-              <li><strong>Tools:</strong> Wireframing tools, Google Analytics, Jira</li>
-              <li><strong>Note:</strong> Working through an external agency sharpened my ability to specify clearly, manage a vendor, and hold quality standards without a hands-on internal team.</li>
+              <li class="blk"><strong>Mission:</strong> Improve the B2B e-commerce platform selling professional human translation services to business clients.</li>
+              <li class="blk"><strong>Actions:</strong> Designed wireframes and mockups; wrote the product requirements; managed the relationship with an external web agency (vendor) building the platform; coordinated delivery, reviews and QA throughout.</li>
+              <li class="gen"><strong>Impact:</strong> Delivered an improved online platform; smoother ordering and quoting experience for business clients. [N]% improvement in [conversion / order completion].</li>
+              <li class="gen"><strong>Tools:</strong> Wireframing tools, Google Analytics, Jira</li>
+              <li class="gen"><strong>Note:</strong> Working through an external agency sharpened my ability to specify clearly, manage a vendor, and hold quality standards without a hands-on internal team.</li>
             </ul></div>
           </li>
           <li data-tags="leadership strategy">
@@ -568,11 +622,11 @@
               <span class="li-text"><strong id="job7-2t">Product 2 — B2C SAAS.</strong><span id="job7-2d"> Online platform for document and website translation.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Own the product for a B2C SAAS platform translating documents and full websites.</li>
-              <li><strong>Actions:</strong> Defined the roadmap and specifications; managed the single dedicated in-house developer; prioritized features; ran weekly product reviews with the CEO.</li>
-              <li><strong>Impact:</strong> Shipped [N] features over the period; improved the translation workflow and user experience. [N]% growth in [usage / subscriptions].</li>
-              <li><strong>Tools:</strong> Jira, Google Analytics</li>
-              <li><strong>Note:</strong> Driving a product with a single developer demands ruthless prioritization — every sprint had to count.</li>
+              <li class="blk"><strong>Mission:</strong> Own the product for a B2C SAAS platform translating documents and full websites.</li>
+              <li class="blk"><strong>Actions:</strong> Defined the roadmap and specifications; managed the single dedicated in-house developer; prioritized features; ran weekly product reviews with the CEO.</li>
+              <li class="gen"><strong>Impact:</strong> Shipped [N] features over the period; improved the translation workflow and user experience. [N]% growth in [usage / subscriptions].</li>
+              <li class="gen"><strong>Tools:</strong> Jira, Google Analytics</li>
+              <li class="gen"><strong>Note:</strong> Driving a product with a single developer demands ruthless prioritization — every sprint had to count.</li>
             </ul></div>
           </li>
         </ul>
@@ -587,14 +641,25 @@
           <li data-tags="leadership strategy orgs startup crossfunc" data-proof-leadership="CEO of an international startup. Hired and led a team of [N] across product, ops and commercial — [N] countries, all functions owned." data-proof-strategy="Designed and executed the full product and GTM strategy across [N] countries — physical product concept to retail distribution, backed by KIMA VENTURES seed fund." data-proof-orgs="Built e-commerce and retail distribution in [N] countries within 2 years. [N] distribution partners. Every system, every process, built from zero." data-proof-startup="Founded, built, funded, distributed — from idea to [N] countries in [N] years. Raised seed from KIMA VENTURES. The founding experience that underpins every product decision since." data-proof-crossfunc="Managed all functions as CEO: product design, manufacturing, e-commerce, retail partnerships, marketing, finance — across [N] countries simultaneously.">
             <div class="li-toggle" onclick="toggleDetail(this)">
               <span class="bullet">+</span>
-              <span class="li-text"><strong id="job8-1t">CEO &amp; founder.</strong><span id="job8-1d"> Created a physical innovative product. International distribution in five countries. Backed by seed VC fund KIMA VENTURES.</span></span>
+              <span class="li-text"><strong id="job8-1t">CEO &amp; founder.</strong><span id="job8-1d"> Created a physical innovative product. International distribution with points of sale in five countries. Backed by seed VC fund KIMA VENTURES.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Create a physical consumer product from concept to market and build an international distribution network.</li>
-              <li><strong>Actions:</strong> Designed product and manufacturing process; built e-commerce + retail distribution in [N] countries; raised seed from KIMA VENTURES; managed all functions; hired and led a team of [N].</li>
-              <li><strong>Impact:</strong> Launched in [N] countries within 2 years. Attracted backing from one of France's most prestigious seed VC funds. Built brand recognition in the lifestyle accessories market.</li>
-              <li><strong>Tools:</strong> Shopify, Google Analytics, Excel, Mailchimp</li>
-              <li><strong>Note:</strong> This founding experience is the bedrock of every product decision since — I understand the full cycle from idea to customer at first hand.</li>
+              <li class="mission-lead">Developed an innovative physical product, a "backup-shoe": comfortable, rollable after-party flats that fit in a woman's little purse or pocket.</li>
+              <li class="actions-list"><ul>
+                <li>Owned the vision and developed the long- and short-term strategy.</li>
+                <li>Raised seed money from KIMA VENTURES — the prestigious, highly active French seed investor owned by Xavier Niel and managed by Jérémie Berrebi (mostly in tech).</li>
+                <li>Managed the board, investor relations, the bank and the budget.</li>
+                <li>My partner and I led a team of three. Together we:</li>
+                <li class="sub">Designed the product.</li>
+                <li class="sub">Produced it in China.</li>
+                <li class="sub">Built and managed the e-commerce activity.</li>
+                <li class="sub">Developed a network of 75 points of sale, mostly in France, with anchors in 4 other countries: the United States (New York and Washington), Austria, Hungary and Germany.</li>
+                <li class="sub">Managed marketing, sales, press, finance, HR and administration.</li>
+                <li class="sub">Built brand recognition in an emerging market, as a pioneer developing this new usage and market.</li>
+                <li class="sub">Effective SEO strategy — ranked first on Google on all our targeted keywords, without ever spending on communication or marketing.</li>
+              </ul></li>
+              <li class="blk"><strong>Tools:</strong> Shopify, Google Analytics, Excel, Mailchimp</li>
+              <li class="blk"><strong>Feedback and learnings:</strong> <a href="https://www.shoette.com" target="_blank" rel="noopener">www.shoette.com</a></li>
             </ul></div>
           </li>
         </ul>
@@ -606,6 +671,7 @@
           <span class="job-company">Real Value Consulting</span>
           <span class="job-type">Consulting — Market and competitive intelligence</span>
         </div>
+        <p class="job-context" id="job9-ctx">Reported to CEO.</p>
         <ul class="job-items">
           <li data-tags="strategy data"
               data-proof-strategy="Delivered competitive intelligence reports informing senior management strategic decisions."
@@ -615,12 +681,12 @@
               <span class="li-text"><strong id="job9-1t">Junior Consultant.</strong><span id="job9-1d"> Deep market analysis, business strategy, and internal information and knowledge management.</span></span>
             </div>
             <div class="li-detail"><ul>
-              <li><strong>Mission:</strong> Provide strategic insights to clients through market analysis and competitive intelligence. Reported to CEO. Also acted as program manager for a pool of 65 freelance consultants, deployed on projects based on client and project requirements.</li>
-              <li><strong>Actions:</strong> Conducted deep market research and competitive benchmarks; developed business strategy recommendations; structured and maintained internal information and knowledge bases.</li>
-              <li><strong>Signature skill:</strong> Data visualization.</li>
-              <li><strong>Impact:</strong> Delivered competitive intelligence reports used in senior management strategic decisions.</li>
-              <li><strong>Tools:</strong> Excel, PowerPoint, market research databases, press and archive databases, datamining tools</li>
-              <li><strong>Note:</strong> First professional experience — developed core analytical, strategic and synthesis skills in a demanding consulting environment.</li>
+              <li class="blk"><strong>Mission:</strong> Provide strategic insights to clients through market analysis and competitive intelligence. Also acted as program manager for a pool of 65 freelance consultants, deployed on projects based on client and project requirements.</li>
+              <li class="blk"><strong>Actions:</strong> Conducted deep market research and competitive benchmarks; developed business strategy recommendations; structured and maintained internal information and knowledge bases.</li>
+              <li class="blk"><strong>Signature skill:</strong> Data visualization.</li>
+              <li class="blk"><strong>Impact:</strong> Delivered competitive intelligence reports used in senior management strategic decisions.</li>
+              <li class="blk"><strong>Tools:</strong> Excel, PowerPoint, market research databases, press and archive databases, datamining tools</li>
+              <li class="blk"><strong>Note:</strong> First professional experience — developed core analytical, strategic and synthesis skills in a demanding consulting environment.</li>
             </ul></div>
           </li>
         </ul>
@@ -636,6 +702,7 @@
           <span class="edu-school" id="edu1-s">Le Wagon Paris</span>
         </div>
         <div class="edu-diploma" id="edu1">"Web Design Express Certificate"</div>
+        <div class="edu-achievement" id="edu1-a">Intermediate class for non-engineers. Learned HTML, CSS, PHP, Photoshop, Illustrator, mockups, the dos and don'ts of high-fidelity wireframing, and the foundations of design for e-commerce.</div>
       </div>
 
       <div class="edu">
@@ -644,7 +711,7 @@
           <span class="edu-school" id="edu2-s">ESCP Europe Paris</span>
         </div>
         <div class="edu-diploma" id="edu2">Specialized Master in Product Development &amp; Entrepreneurship</div>
-        <div class="edu-achievement" id="edu2-a">Class president &nbsp;·&nbsp; "Best pitch" Award</div>
+        <div class="edu-achievement" id="edu2-a">Class president &nbsp;·&nbsp; Winner of the "Best Pitch" award</div>
       </div>
 
       <div class="edu">
@@ -788,11 +855,11 @@
     }
 
     const trans = {
-      en: {"lang":"en","dir":"ltr","back":"← back","footer-date":"June 2026 :","footer-seeking":"Seeking a CPO / VP Product / AI Product Lead position","section-highlights":"Highlights","highlights-intro":"Each tag represents a core competency. Click to surface supporting evidence across 13 years of product leadership.","section-exp":"Experience","section-edu":"Education","section-lang":"Languages","job9-1t":"Junior Consultant.","job9-1d":" Deep market analysis, business strategy, and internal information and knowledge management.","edu1-s":"Le Wagon Paris","edu1":"\"Web Design Express Certificate\"","edu2-s":"ESCP Europe Paris","edu2":"Specialized Master in Product Development & Entrepreneurship","edu2-a":"Class president · \"Best pitch\" Award","edu3-s":"INSEEC","edu3":"Master of Science in Business Strategy","edu3-a":"Course fully in English · Major: Data and market intelligence","edu4-s":"Université Paris 1 Sorbonne","edu4":"Bachelor in Economics","languages":"English: fluent · French: native · Hebrew: learning · Italian: scholar","job1-ctx":"Responding to incoming network-powered demand to assist early-stage startups in their AI-related Product work.","job2-ctx":"Large American corporation, market leader. Reported to Product Director.","job3-ctx":"New startup. Reported to CEO.","job4-ctx":"Fast growing, 350-person startup. Reported to CEO.","job5-ctx":"6-year-old founded startup. Reported to CEO.","job6-ctx":"Startup launched by a market-leader media corporation. Reported to CPO.","job7-ctx":"20-person company, market leader. Reported to CEO.","job1-1t":"Product ops.","job1-1d":" Draft a large volume of tickets, clean Jira, reorganize specifications for the Dev and QA team in an exceptionally short time frame.","job1-2t":"Product Audit.","job1-2d":" Assess the logic and solidity of a company's product process, remove blockers, and prepare the team to introduce AI.","job1-3t":"Transition to AI.","job1-3d":" Rationalize team structure, test and choose AI tools for the entire org, and unify the AI process across all PMs.","job1-4t":"Assist Founders — vibe coding.","job1-4d":" Development of a startup using only Claude Code. Often no CTO in the team. My main activity.","job1-5t":"Assist Founders — AI tools.","job1-5d":" Design and development of AI tools tailored to each startup's specific operational or product problems.","job1-6t":"Deliver AI-generated content, prompt engineering.","job1-6d":" Pro bono, family and friends.","job2-1t":"Head of Product, CMS.","job2-1d":" Drove roadmap and execution. In charge of communication with US stakeholders.","job2-2t":"Product Specialist, E-commerce Retention.","job2-2d":" (6 months)","job3-1t":"Head of Product, First PM.","job3-1d":" Built the product department: organization, processes and roadmap.","job4-1t":"Head of Product, Consumer Platforms.","job4-1d":" Lead 5 squads, developed 5 BtoC SAAS products (incl. kiosk). Delivered the roadmap.","job5-1t":"Senior Product Manager.","job5-1d":"","job5-2t":"Program Management.","job5-2d":" First and only PMO. Implemented a data-driven delivery approach.","job6-1t":"Head of Catalog and Merchandising.","job6-1d":"","job6-2t":"Product Manager.","job6-2d":" Search, cross-sell, funnel, e-commerce features. (6 months)","job7-1t":"Product 1 — B2B E-commerce.","job7-1d":" Selling a service: professional human translation.","job7-2t":"Product 2 — B2C SAAS.","job7-2d":" Online platform for document and website translation.","job8-1t":"CEO &amp; founder.","job8-1d":" Created a physical innovative product. International distribution in five countries. Backed by seed VC fund KIMA VENTURES."},
-      fr: {"lang":"fr","dir":"ltr","back":"← retour","footer-date":"Juin 2026 :","footer-seeking":"Recherche un poste CPO / VP Product / AI Product Lead","section-highlights":"Highlights","highlights-intro":"Chaque tag représente une compétence clé. Cliquez pour révéler les preuves sur 13 ans de leadership produit.","section-exp":"Expérience","section-edu":"Formation","section-lang":"Langues","job9-1t":"Consultant Junior.","job9-1d":" Analyse de marché approfondie, stratégie d'entreprise et gestion de l'information et des connaissances internes.","edu1-s":"Le Wagon Paris","edu1":"\"Web Design Express Certificate\"","edu2-s":"ESCP Europe Paris","edu2":"Mastère Spécialisé Développement Produit & Entrepreneuriat","edu2-a":"Déléguée de promotion · Lauréate \"Best pitch\"","edu3-s":"INSEEC","edu3":"Master of Science en Stratégie d'entreprise","edu3-a":"Cours entièrement en anglais · Majeure : Data et intelligence de marché","edu4-s":"Université Paris 1 Sorbonne","edu4":"Licence en Économie","languages":"Anglais : courant · Français : langue maternelle · Hébreu : en apprentissage · Italien : scolaire","job1-ctx":"Réponse à une demande entrante du réseau pour accompagner des startups early-stage dans leur travail Produit lié à l'IA.","job2-ctx":"Grande corporation américaine, leader du marché. Sous la direction du Directeur Produit.","job3-ctx":"Nouvelle startup. Sous la direction du CEO.","job4-ctx":"Startup en forte croissance, 350 personnes. Sous la direction du CEO.","job5-ctx":"Startup fondée depuis 6 ans. Sous la direction du CEO.","job6-ctx":"Startup lancée par un grand groupe média leader. Sous la direction du CPO.","job7-ctx":"Entreprise de 20 personnes, leader du marché. Sous la direction du CEO.","job1-1t":"Product ops.","job1-1d":" Rédaction d'un grand volume de tickets, nettoyage de Jira, réorganisation des specs pour Dev et QA en temps record.","job1-2t":"Audit Produit.","job1-2d":" Évaluation de la logique du processus produit, suppression des blocages, préparation à l'introduction de l'IA.","job1-3t":"Transition vers l'IA.","job1-3d":" Rationalisation de la structure d'équipe, choix des outils IA pour toute l'organisation, unification du processus IA.","job1-4t":"Accompagnement des fondateurs — vibe coding.","job1-4d":" Développement de leur startup en utilisant uniquement Claude Code. Mon activité principale.","job1-5t":"Accompagnement des fondateurs — outils IA.","job1-5d":" Conception et développement d'outils IA adaptés aux besoins spécifiques de chaque startup.","job1-6t":"Production de contenu généré par IA, prompt engineering.","job1-6d":" Pro bono, famille et amis.","job2-1t":"Head of Product, CMS.","job2-1d":" Pilotage de la roadmap et de l'exécution. En charge de la communication avec les parties prenantes US.","job2-2t":"Product Specialist, Rétention e-commerce.","job2-2d":" (6 mois)","job3-1t":"Head of Product, premier PM.","job3-1d":" Construction du département produit : organisation, processus et roadmap.","job4-1t":"Head of product, plateformes consommateurs.","job4-1d":" Management de 5 squads, développement de 5 produits SAAS BtoC. Livraison de la roadmap.","job5-1t":"Senior Product Manager.","job5-1d":"","job5-2t":"Program management.","job5-2d":" PMO unique. Mise en place d'une approche data-driven.","job6-1t":"Head of catalogue et merchandising.","job6-1d":"","job6-2t":"Product manager.","job6-2d":" Recherche, vente croisée, tunnel, fonctionnalités e-commerce. (6 mois)","job7-1t":"Produit 1 — E-commerce B2B.","job7-1d":" Vente d'un service : traduction humaine professionnelle.","job7-2t":"Produit 2 — SAAS B2C.","job7-2d":" Plateforme en ligne de traduction de documents et de sites web.","job8-1t":"CEO &amp; fondatrice.","job8-1d":" Création d'un produit physique innovant. Distribution internationale dans cinq pays. Financée par KIMA VENTURES."},
-      he: {"lang":"he","dir":"rtl","back":"חזרה ←","footer-date":"יוני 2026 :","footer-seeking":"מחפשת תפקיד CPO / VP Product / AI Product Lead","section-highlights":"Highlights","highlights-intro":"כל תגית מייצגת כישור מרכזי. לחצו להצגת הראיות על פני 13 שנות מנהיגות מוצר.","section-exp":"ניסיון","section-edu":"השכלה","section-lang":"שפות","job9-1t":"יועץ/ת ג'וניור.","job9-1d":" ניתוח שוק מעמיק, אסטרטגיה עסקית וניהול מידע ומשאבי ידע פנים-ארגוניים.","edu1-s":"Le Wagon פריז","edu1":"\"Web Design Express Certificate\"","edu2-s":"ESCP Europe פריז","edu2":"מאסטר מתמחה בפיתוח מוצר ויזמות","edu2-a":"נציגת הכיתה · זוכת פרס \"Best pitch\"","edu3-s":"INSEEC","edu3":"מוסמך מדעים באסטרטגיה עסקית","edu3-a":"לימודים מלאים באנגלית · התמחות: Data ומודיעין שוק","edu4-s":"Université Paris 1 Sorbonne","edu4":"תואר ראשון בכלכלה","languages":"אנגלית: שוטפת · צרפתית: שפת אם · עברית: בלמידה · איטלקית: אקדמית","job1-ctx":"מענה לביקוש נכנס מהרשת לסיוע לסטארטאפים בשלבים מוקדמים בעבודת המוצר הקשורה ל-AI.","job2-ctx":"תאגיד אמריקאי גדול, מוביל שוק. כפופה למנהל המוצר.","job3-ctx":"סטארטאפ חדש. כפופה למנכ\"ל.","job4-ctx":"סטארטאפ בצמיחה מהירה, 350 עובדים. כפופה למנכ\"ל.","job5-ctx":"סטארטאפ מבוסס בן 6 שנים. כפופה למנכ\"ל.","job6-ctx":"סטארטאפ שהושק על ידי תאגיד מדיה גדול. כפופה למנהל המוצר הראשי.","job7-ctx":"חברת 20 עובדים, מובילת שוק. כפופה למנכ\"ל.","job1-1t":"Product ops.","job1-1d":" כתיבת כמות גדולה של טיקטים, ניקוי Jira, ארגון מחדש של מפרטים לצוותי Dev ו-QA בזמן קצר.","job1-2t":"Product Audit.","job1-2d":" הערכת תהליך המוצר, הסרת חסמים, הכנה לאימוץ AI.","job1-3t":"מעבר ל-AI.","job1-3d":" ייעול המבנה, בחירת כלי AI לכל הארגון ואיחוד תהליך ה-AI.","job1-4t":"סיוע למייסדים — vibe coding.","job1-4d":" פיתוח הסטארטאפ בשימוש ב-Claude Code בלבד. הפעילות העיקרית שלי.","job1-5t":"סיוע למייסדים — כלי AI.","job1-5d":" עיצוב ופיתוח כלי AI מותאמים לצרכים הספציפיים של כל סטארטאפ.","job1-6t":"הפקת תוכן מבוסס AI, prompt engineering.","job1-6d":" בהתנדבות, משפחה וחברים.","job2-1t":"ראש מוצר, CMS.","job2-1d":" הובלת מפת הדרכים והביצוע. אחראית על התקשורת עם בעלי העניין האמריקאים.","job2-2t":"מומחית מוצר, שימור לקוחות.","job2-2d":" (6 חודשים)","job3-1t":"ראש מוצר, מנהלת המוצר הראשונה.","job3-1d":" בניית מחלקת המוצר: ארגון, תהליכים ומפת דרכים.","job4-1t":"ראש מוצר, פלטפורמות צרכנים.","job4-1d":" ניהול 5 צוותים, 5 מוצרי SAAS לצרכן. עמידה במפת הדרכים.","job5-1t":"מנהלת מוצר בכירה.","job5-1d":"","job5-2t":"ניהול תוכניות.","job5-2d":" PMO ראשון ויחיד. יישום גישה מבוססת נתונים.","job6-1t":"ראש קטלוג ומרצ'נדייזינג.","job6-1d":"","job6-2t":"מנהלת מוצר.","job6-2d":" חיפוש, מכירה צולבת, משפך, פיצ'רי מסחר אלקטרוני. (6 חודשים)","job7-1t":"מוצר 1 — E-commerce B2B.","job7-1d":" מכירת שירות: תרגום אנושי מקצועי.","job7-2t":"מוצר 2 — SAAS B2C.","job7-2d":" פלטפורמה מקוונת לתרגום מסמכים ואתרים.","job8-1t":"מנכ\"לית ומייסדת.","job8-1d":" יצירת מוצר פיזי חדשני. הפצה בינלאומית בחמש מדינות. בגיבוי KIMA VENTURES."}
+      en: {"lang":"en","dir":"ltr","back":"← back","footer-date":"June 2026 :","footer-seeking":"Seeking a CPO / VP Product / AI Product Lead position","section-highlights":"Highlights","highlights-intro":"Each tag represents a core competency. Click to surface supporting evidence across 13 years of product leadership.","section-exp":"Experience","section-edu":"Education","section-lang":"Languages","job9-ctx":"Reported to CEO.","job9-1t":"Junior Consultant.","job9-1d":" Deep market analysis, business strategy, and internal information and knowledge management.","edu1-s":"Le Wagon Paris","edu1":"\"Web Design Express Certificate\"","edu1-a":"Intermediate class for non-engineers. Learned HTML, CSS, PHP, Photoshop, Illustrator, mockups, the dos and don'ts of high-fidelity wireframing, and the foundations of design for e-commerce.","edu2-s":"ESCP Europe Paris","edu2":"Specialized Master in Product Development & Entrepreneurship","edu2-a":"Class president · Winner of the \"Best Pitch\" award","edu3-s":"INSEEC","edu3":"Master of Science in Business Strategy","edu3-a":"Course fully in English · Major: Data and market intelligence","edu4-s":"Université Paris 1 Sorbonne","edu4":"Bachelor in Economics","languages":"English: fluent · French: native · Hebrew: learning · Italian: scholar","job1-ctx":"Responding to incoming network-powered demand to assist early-stage startups in their AI-related Product work.","job2-ctx":"Large American corporation, market leader. Reported to Product Director.","job3-ctx":"New startup. Reported to CEO.","job4-ctx":"Fast growing, 350-person startup. Reported to CEO.","job5-ctx":"A personal cloud storage service — like Dropbox, but with encrypted protocols and your files stored on a physical, secured disk attached to your box (hardware). A \"star\" tech startup, backed by a famous European VC, fast growing. Reported to CEO.","job6-ctx":"Doctipharma is a startup launched within the market-leader media corporation Lagardère. It is a sister company to Doctissimo (same office, shared resources).","job6-ctx2":"Reported to CPO then to CEO. Used a shared team of 6 developers and QA. Managed 2 product managers.","job7-ctx":"20-person company, market leader. Reported to CEO.","job1-1t":"Product ops.","job1-1d":" Draft a large volume of tickets, clean Jira, reorganize specifications for the Dev and QA team in an exceptionally short time frame.","job1-2t":"Product Audit.","job1-2d":" Assess the logic and solidity of a company's product process, remove blockers, and prepare the team to introduce AI.","job1-3t":"Transition to AI.","job1-3d":" Rationalize team structure, test and choose AI tools for the entire org, and unify the AI process across all PMs.","job1-4t":"Assist Founders — vibe coding.","job1-4d":" Development of a startup using only Claude Code. Often no CTO in the team. My main activity.","job1-5t":"Assist Founders — AI tools.","job1-5d":" Design and development of AI tools tailored to each startup's specific operational or product problems.","job1-6t":"Deliver AI-generated content, prompt engineering.","job1-6d":" Pro bono, family and friends.","job2-1t":"Head of Product, CMS.","job2-1d":" Drove roadmap and execution. In charge of communication with US stakeholders.","job2-2t":"Product Specialist, E-commerce Retention.","job2-2d":" (6 months)","job2-3t":"Release Manager, iOS Mobile App.","job2-3d":"","job3-1t":"Head of Product, First PM.","job3-1d":" Built the product department: organization, processes and roadmap.","job4-1t":"Head of Product, Consumer Platforms.","job4-1d":" Lead 5 squads, developed 5 BtoC SAAS products (incl. kiosk). Delivered the roadmap.","job5-1t":"Senior Product Manager.","job5-1d":"","job5-2t":"Program Management.","job5-2d":" First and only PMO. Unblock the delivery with a better management of the tech dependencies.","job6-1t":"Head of Catalog and Merchandising.","job6-1d":"","job6-2t":"Product Manager.","job6-2d":" Search, cross-sell, funnel, e-commerce features. (6 months)","job7-1t":"Product 1 — B2B E-commerce.","job7-1d":" Selling a service: professional human translation.","job7-2t":"Product 2 — B2C SAAS.","job7-2d":" Online platform for document and website translation.","job8-1t":"CEO &amp; founder.","job8-1d":" Created a physical innovative product. International distribution with points of sale in five countries. Backed by seed VC fund KIMA VENTURES."},
+      fr: {"lang":"fr","dir":"ltr","back":"← retour","footer-date":"Juin 2026 :","footer-seeking":"Recherche un poste CPO / VP Product / AI Product Lead","section-highlights":"Highlights","highlights-intro":"Chaque tag représente une compétence clé. Cliquez pour révéler les preuves sur 13 ans de leadership produit.","section-exp":"Expérience","section-edu":"Formation","section-lang":"Langues","job9-ctx":"Sous la direction du CEO.","job9-1t":"Consultant Junior.","job9-1d":" Analyse de marché approfondie, stratégie d'entreprise et gestion de l'information et des connaissances internes.","edu1-s":"Le Wagon Paris","edu1":"\"Web Design Express Certificate\"","edu1-a":"Formation intermédiaire pour non-ingénieurs. Appris HTML, CSS, PHP, Photoshop, Illustrator, les maquettes, les bonnes pratiques du wireframing haute-fidélité, et les fondamentaux du design pour le e-commerce.","edu2-s":"ESCP Europe Paris","edu2":"Mastère Spécialisé Développement Produit & Entrepreneuriat","edu2-a":"Déléguée de promotion · Lauréate du prix \"Best Pitch\"","edu3-s":"INSEEC","edu3":"Master of Science en Stratégie d'entreprise","edu3-a":"Cours entièrement en anglais · Majeure : Data et intelligence de marché","edu4-s":"Université Paris 1 Sorbonne","edu4":"Licence en Économie","languages":"Anglais : courant · Français : langue maternelle · Hébreu : en apprentissage · Italien : scolaire","job1-ctx":"Réponse à une demande entrante du réseau pour accompagner des startups early-stage dans leur travail Produit lié à l'IA.","job2-ctx":"Grande corporation américaine, leader du marché. Sous la direction du Directeur Produit.","job3-ctx":"Nouvelle startup. Sous la direction du CEO.","job4-ctx":"Startup en forte croissance, 350 personnes. Sous la direction du CEO.","job5-ctx":"Un service de stockage cloud personnel — comme Dropbox, mais avec des protocoles chiffrés et vos fichiers stockés sur un disque physique sécurisé relié à votre box (hardware). Une startup tech « star », soutenue par un célèbre fonds de capital-risque européen, en forte croissance. Sous la direction du CEO.","job6-ctx":"Doctipharma est une startup lancée au sein du groupe média leader Lagardère. C'est une société sœur de Doctissimo (mêmes bureaux, ressources partagées).","job6-ctx2":"Rattachée au CPO puis au CEO. Équipe partagée de 6 développeurs et QA. Management de 2 product managers.","job7-ctx":"Entreprise de 20 personnes, leader du marché. Sous la direction du CEO.","job1-1t":"Product ops.","job1-1d":" Rédaction d'un grand volume de tickets, nettoyage de Jira, réorganisation des specs pour Dev et QA en temps record.","job1-2t":"Audit Produit.","job1-2d":" Évaluation de la logique du processus produit, suppression des blocages, préparation à l'introduction de l'IA.","job1-3t":"Transition vers l'IA.","job1-3d":" Rationalisation de la structure d'équipe, choix des outils IA pour toute l'organisation, unification du processus IA.","job1-4t":"Accompagnement des fondateurs — vibe coding.","job1-4d":" Développement de leur startup en utilisant uniquement Claude Code. Mon activité principale.","job1-5t":"Accompagnement des fondateurs — outils IA.","job1-5d":" Conception et développement d'outils IA adaptés aux besoins spécifiques de chaque startup.","job1-6t":"Production de contenu généré par IA, prompt engineering.","job1-6d":" Pro bono, famille et amis.","job2-1t":"Head of Product, CMS.","job2-1d":" Pilotage de la roadmap et de l'exécution. En charge de la communication avec les parties prenantes US.","job2-2t":"Product Specialist, Rétention e-commerce.","job2-2d":" (6 mois)","job2-3t":"Release Manager, app mobile iOS.","job2-3d":"","job3-1t":"Head of Product, premier PM.","job3-1d":" Construction du département produit : organisation, processus et roadmap.","job4-1t":"Head of product, plateformes consommateurs.","job4-1d":" Management de 5 squads, développement de 5 produits SAAS BtoC. Livraison de la roadmap.","job5-1t":"Senior Product Manager.","job5-1d":"","job5-2t":"Program management.","job5-2d":" PMO unique. Déblocage de la livraison par une meilleure gestion des dépendances techniques.","job6-1t":"Head of catalogue et merchandising.","job6-1d":"","job6-2t":"Product manager.","job6-2d":" Recherche, vente croisée, tunnel, fonctionnalités e-commerce. (6 mois)","job7-1t":"Produit 1 — E-commerce B2B.","job7-1d":" Vente d'un service : traduction humaine professionnelle.","job7-2t":"Produit 2 — SAAS B2C.","job7-2d":" Plateforme en ligne de traduction de documents et de sites web.","job8-1t":"CEO &amp; fondatrice.","job8-1d":" Création d'un produit physique innovant. Distribution internationale avec des points de vente dans cinq pays. Financée par KIMA VENTURES."},
+      he: {"lang":"he","dir":"rtl","back":"חזרה ←","footer-date":"יוני 2026 :","footer-seeking":"מחפשת תפקיד CPO / VP Product / AI Product Lead","section-highlights":"Highlights","highlights-intro":"כל תגית מייצגת כישור מרכזי. לחצו להצגת הראיות על פני 13 שנות מנהיגות מוצר.","section-exp":"ניסיון","section-edu":"השכלה","section-lang":"שפות","job9-ctx":"כפופה למנכ\"ל.","job9-1t":"יועץ/ת ג'וניור.","job9-1d":" ניתוח שוק מעמיק, אסטרטגיה עסקית וניהול מידע ומשאבי ידע פנים-ארגוניים.","edu1-s":"Le Wagon פריז","edu1":"\"Web Design Express Certificate\"","edu1-a":"קורס ביניים למי שאינם מהנדסים. למדתי HTML, CSS, PHP, Photoshop, Illustrator, מוקאפים, הכללים של wireframing ברזולוציה גבוהה, ויסודות העיצוב למסחר אלקטרוני.","edu2-s":"ESCP Europe פריז","edu2":"מאסטר מתמחה בפיתוח מוצר ויזמות","edu2-a":"נציגת הכיתה · זוכת פרס \"Best Pitch\"","edu3-s":"INSEEC","edu3":"מוסמך מדעים באסטרטגיה עסקית","edu3-a":"לימודים מלאים באנגלית · התמחות: Data ומודיעין שוק","edu4-s":"Université Paris 1 Sorbonne","edu4":"תואר ראשון בכלכלה","languages":"אנגלית: שוטפת · צרפתית: שפת אם · עברית: בלמידה · איטלקית: אקדמית","job1-ctx":"מענה לביקוש נכנס מהרשת לסיוע לסטארטאפים בשלבים מוקדמים בעבודת המוצר הקשורה ל-AI.","job2-ctx":"תאגיד אמריקאי גדול, מוביל שוק. כפופה למנהל המוצר.","job3-ctx":"סטארטאפ חדש. כפופה למנכ\"ל.","job4-ctx":"סטארטאפ בצמיחה מהירה, 350 עובדים. כפופה למנכ\"ל.","job5-ctx":"שירות אחסון ענן אישי — כמו Dropbox, אך עם פרוטוקולים מוצפנים והקבצים האישיים נשמרים על דיסק פיזי מאובטח המחובר לבוקס (חומרה). סטארטאפ טק \"כוכב\", בגיבוי קרן הון סיכון אירופית מפורסמת, בצמיחה מהירה. כפופה למנכ\"ל.","job6-ctx":"Doctipharma הוא סטארטאפ שהושק בתוך תאגיד המדיה המוביל Lagardère. חברה אחות של Doctissimo (אותם משרדים, משאבים משותפים).","job6-ctx2":"כפופה ל-CPO ולאחר מכן ל-CEO. צוות משותף של 6 מפתחים ו-QA. ניהול 2 מנהלי מוצר.","job7-ctx":"חברת 20 עובדים, מובילת שוק. כפופה למנכ\"ל.","job1-1t":"Product ops.","job1-1d":" כתיבת כמות גדולה של טיקטים, ניקוי Jira, ארגון מחדש של מפרטים לצוותי Dev ו-QA בזמן קצר.","job1-2t":"Product Audit.","job1-2d":" הערכת תהליך המוצר, הסרת חסמים, הכנה לאימוץ AI.","job1-3t":"מעבר ל-AI.","job1-3d":" ייעול המבנה, בחירת כלי AI לכל הארגון ואיחוד תהליך ה-AI.","job1-4t":"סיוע למייסדים — vibe coding.","job1-4d":" פיתוח הסטארטאפ בשימוש ב-Claude Code בלבד. הפעילות העיקרית שלי.","job1-5t":"סיוע למייסדים — כלי AI.","job1-5d":" עיצוב ופיתוח כלי AI מותאמים לצרכים הספציפיים של כל סטארטאפ.","job1-6t":"הפקת תוכן מבוסס AI, prompt engineering.","job1-6d":" בהתנדבות, משפחה וחברים.","job2-1t":"ראש מוצר, CMS.","job2-1d":" הובלת מפת הדרכים והביצוע. אחראית על התקשורת עם בעלי העניין האמריקאים.","job2-2t":"מומחית מוצר, שימור לקוחות.","job2-2d":" (6 חודשים)","job2-3t":"Release Manager, אפליקציית iOS.","job2-3d":"","job3-1t":"ראש מוצר, מנהלת המוצר הראשונה.","job3-1d":" בניית מחלקת המוצר: ארגון, תהליכים ומפת דרכים.","job4-1t":"ראש מוצר, פלטפורמות צרכנים.","job4-1d":" ניהול 5 צוותים, 5 מוצרי SAAS לצרכן. עמידה במפת הדרכים.","job5-1t":"מנהלת מוצר בכירה.","job5-1d":"","job5-2t":"ניהול תוכניות.","job5-2d":" PMO ראשון ויחיד. שחרור חסמים במסירה באמצעות ניהול טוב יותר של תלויות טכניות.","job6-1t":"ראש קטלוג ומרצ'נדייזינג.","job6-1d":"","job6-2t":"מנהלת מוצר.","job6-2d":" חיפוש, מכירה צולבת, משפך, פיצ'רי מסחר אלקטרוני. (6 חודשים)","job7-1t":"מוצר 1 — E-commerce B2B.","job7-1d":" מכירת שירות: תרגום אנושי מקצועי.","job7-2t":"מוצר 2 — SAAS B2C.","job7-2d":" פלטפורמה מקוונת לתרגום מסמכים ואתרים.","job8-1t":"מנכ\"לית ומייסדת.","job8-1d":" יצירת מוצר פיזי חדשני. הפצה בינלאומית עם נקודות מכירה בחמש מדינות. בגיבוי KIMA VENTURES."}
     };
-    const ids = ['footer-date', 'footer-seeking', 'section-highlights', 'highlights-intro', 'section-exp', 'section-edu', 'section-lang', 'job1-ctx', 'job2-ctx', 'job3-ctx', 'job4-ctx', 'job5-ctx', 'job6-ctx', 'job7-ctx', 'job1-1t', 'job1-1d', 'job1-2t', 'job1-2d', 'job1-3t', 'job1-3d', 'job1-4t', 'job1-4d', 'job1-5t', 'job1-5d', 'job1-6t', 'job1-6d', 'job2-1t', 'job2-1d', 'job2-2t', 'job2-2d', 'job3-1t', 'job3-1d', 'job4-1t', 'job4-1d', 'job5-1t', 'job5-1d', 'job5-2t', 'job5-2d', 'job6-1t', 'job6-1d', 'job6-2t', 'job6-2d', 'job7-1t', 'job7-1d', 'job7-2t', 'job7-2d', 'job8-1t', 'job8-1d', 'job9-1t', 'job9-1d', 'edu1-s', 'edu1', 'edu2-s', 'edu2', 'edu2-a', 'edu3-s', 'edu3', 'edu3-a', 'edu4-s', 'edu4', 'languages'];
+    const ids = ['footer-date', 'footer-seeking', 'section-highlights', 'highlights-intro', 'section-exp', 'section-edu', 'section-lang', 'job1-ctx', 'job2-ctx', 'job3-ctx', 'job4-ctx', 'job5-ctx', 'job6-ctx', 'job6-ctx2', 'job7-ctx', 'job1-1t', 'job1-1d', 'job1-2t', 'job1-2d', 'job1-3t', 'job1-3d', 'job1-4t', 'job1-4d', 'job1-5t', 'job1-5d', 'job1-6t', 'job1-6d', 'job2-1t', 'job2-1d', 'job2-2t', 'job2-2d', 'job2-3t', 'job2-3d', 'job3-1t', 'job3-1d', 'job4-1t', 'job4-1d', 'job5-1t', 'job5-1d', 'job5-2t', 'job5-2d', 'job6-1t', 'job6-1d', 'job6-2t', 'job6-2d', 'job7-1t', 'job7-1d', 'job7-2t', 'job7-2d', 'job8-1t', 'job8-1d', 'job9-ctx', 'job9-1t', 'job9-1d', 'edu1-s', 'edu1', 'edu1-a', 'edu2-s', 'edu2', 'edu2-a', 'edu3-s', 'edu3', 'edu3-a', 'edu4-s', 'edu4', 'languages'];
 
     function setLang(l) {
       currentLang = l;
